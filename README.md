@@ -25,52 +25,68 @@ Final service descriptions and boundaries will be refined with the client before
 
 ## Planned Sitemap
 
-| Page | Route |
-| --- | --- |
-| Home | `/` |
-| Services | `/services` |
-| About | `/about` |
-| Reviews | `/reviews` |
+| Page                        | Route           |
+| --------------------------- | --------------- |
+| Home                        | `/`             |
+| Services                    | `/services`     |
+| About                       | `/about`        |
+| Reviews                     | `/reviews`      |
 | Request a Free Consultation | `/consultation` |
-| Contact | `/contact` |
-| Privacy | `/privacy` |
+| Contact                     | `/contact`      |
+| Privacy                     | `/privacy`      |
 
-## Planned Technology Stack
+## Technology Stack
 
-The following stack is planned; it is not installed in this repository yet:
+Current application stack:
 
-- Next.js App Router
+- Next.js App Router (static export)
 - React
 - JavaScript
 - Material UI
 - Emotion
-- Next.js static export
-- Hosted form provider
-- GitHub Actions
-- Nginx static hosting
+- Hosted form provider (deferred)
+- GitHub Actions + Nginx static hosting (deployment deferred)
 
 ## Development Status
 
-This repository is currently in the **preparation phase**. The Next.js application has not yet been scaffolded.
+**Phase 3.7 (Privacy page) is complete.** Remaining work is content refinement, provider configuration, and launch preparation.
 
 Planned phases:
 
-1. Repository preparation
-2. Application architecture and placeholder pages
-3. Theme, logos, colors, fonts, and favicons
-4. Page-by-page implementation
+1. Repository preparation — complete
+2. Application architecture and placeholder pages — complete
+3. Brand theme foundation — complete
+4. Page-by-page implementation — Home, Services, About, Reviews, Contact, Consultation, and Privacy complete
 5. Content refinement and launch preparation
 
 ## Local Development
 
-Setup commands will be added after the Next.js application is scaffolded in Phase 1.
+Requires Node.js 24 (see `.nvmrc`).
+
+```bash
+npm install
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000).
+
+### Other commands
+
+```bash
+npm run lint
+npm run build
+```
+
+`npm run build` runs the production build and writes the static export to `out/`.
+
+`npm start` is provided by Next.js scaffolding but is **not** used for production. This project uses static export; serve the `out/` directory with Nginx or any static file server.
 
 ## Deployment
 
 Intended deployment flow:
 
 1. Push to GitHub
-2. GitHub Actions builds the static export
+2. GitHub Actions builds the static export (`out/`)
 3. Exported files are deployed to the VPS
 4. Nginx serves the static site
 
@@ -81,7 +97,7 @@ Deployment configuration will be added in a later phase.
 Project documentation lives in `docs/`:
 
 - [PROJECT_CONTEXT.md](docs/PROJECT_CONTEXT.md) — Business background, goals, audience, tone, and unknown client details
-- [ARCHITECTURE.md](docs/ARCHITECTURE.md) — Intended technical architecture, routes, and static-export constraints
+- [ARCHITECTURE.md](docs/ARCHITECTURE.md) — Technical architecture, routes, MUI integration, and static-export constraints
 - [CONTENT_GUIDELINES.md](docs/CONTENT_GUIDELINES.md) — Voice, CTA language, and copy safety rules
 - [ASSET_GUIDELINES.md](docs/ASSET_GUIDELINES.md) — Logo, image, video, naming, and alt-text standards
 - [DECISIONS.md](docs/DECISIONS.md) — Architecture Decision Log (ADRs)
@@ -94,7 +110,7 @@ Development should follow:
 - Existing project architecture in `docs/ARCHITECTURE.md`
 - Accessibility requirements
 - Responsive design requirements
-- Consistent Material UI theme usage (once the theme exists)
+- Consistent Material UI theme usage
 - Small, focused commits
 
 Do not invent client facts. Use clearly marked placeholders for missing information.

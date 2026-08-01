@@ -1,0 +1,603 @@
+"use client";
+
+import Alert from "@mui/material/Alert";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Checkbox from "@mui/material/Checkbox";
+import Container from "@mui/material/Container";
+import FormControl from "@mui/material/FormControl";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormHelperText from "@mui/material/FormHelperText";
+import FormLabel from "@mui/material/FormLabel";
+import Grid from "@mui/material/Grid";
+import MenuItem from "@mui/material/MenuItem";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import Stack from "@mui/material/Stack";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
+import { useEffect, useId, useRef, useState } from "react";
+import {
+  consultationFormCopy,
+  consultationTimeframeOptions,
+  contactMethodOptions,
+  referralSourceOptions,
+  serviceNeededOptions,
+  serviceTimeframeOptions,
+} from "@/content/consultation";
+import { formProvider, isFormSubmissionEnabled } from "@/content/forms";
+import { routes } from "@/content/routes";
+import AppLink from "@/components/shared/AppLink";
+import ConsultationPrivacyNotice from "@/components/consultation/ConsultationPrivacyNotice";
+import ConsultationSuccess from "@/components/consultation/ConsultationSuccess";
+import { brandRadii } from "@/theme/brandTokens";
+
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+const emptyValues = {
+  fullName: "",
+  email: "",
+  phone: "",
+  preferredContact: "",
+  serviceNeeded: "",
+  location: "",
+  consultationTimeframe: "",
+  serviceTimeframe: "",
+  needs: "",
+  referralSource: "",
+  consent: false,
+};
+
+function validate(values) {
+  const { fields } = consultationFormCopy;
+  const errors = {};
+
+  if (!values.fullName.trim()) {
+    errors.fullName = fields.fullName.requiredMessage;
+  }
+
+  if (!values.email.trim()) {
+    errors.email = fields.email.requiredMessage;
+  } else if (!EMAIL_PATTERN.test(values.email.trim())) {
+    errors.email = fields.email.invalidMessage;
+  }
+
+  if (!values.phone.trim()) {
+    errors.phone = fields.phone.requiredMessage;
+  }
+
+  if (!values.preferredContact) {
+    errors.preferredContact = fields.preferredContact.requiredMessage;
+  }
+
+  if (!values.serviceNeeded) {
+    errors.serviceNeeded = fields.serviceNeeded.requiredMessage;
+  }
+
+  if (!values.location.trim()) {
+    errors.location = fields.location.requiredMessage;
+  }
+
+  if (!values.consultationTimeframe) {
+    errors.consultationTimeframe = fields.consultationTimeframe.requiredMessage;
+  }
+
+  if (!values.serviceTimeframe) {
+    errors.serviceTimeframe = fields.serviceTimeframe.requiredMessage;
+  }
+
+  if (!values.needs.trim()) {
+    errors.needs = fields.needs.requiredMessage;
+  }
+
+  if (!values.consent) {
+    errors.consent = fields.consent.requiredMessage;
+  }
+
+  return errors;
+}
+
+function FieldGroup({ title, children }) {
+  return (
+    <Box component="fieldset" sx={{ border: "none", m: 0, p: 0 }}>
+      <Typography
+        component="legend"
+        variant="h3"
+        sx={{
+          typography: "h6",
+          mb: 2,
+          float: "none",
+          width: "100%",
+          padding: 0,
+        }}
+      >
+        {title}
+      </Typography>
+      <Stack spacing={2.5}>{children}</Stack>
+    </Box>
+  );
+}
+
+export default function ConsultationForm() {
+  const formId = useId();
+  const successHeadingRef = useRef(null);
+  const submissionEnabled = isFormSubmissionEnabled(
+    formProvider.consultationEndpoint,
+  );
+  const [values, setValues] = useState(emptyValues);
+  const [errors, setErrors] = useState({});
+  const [status, setStatus] = useState("idle");
+  const [formMessage, setFormMessage] = useState("");
+
+  const statusId = `${formId}-status`;
+  const consentErrorId = `${formId}-consent-error`;
+  const locationHelperId = `${formId}-location-helper`;
+  const consultationHelperId = `${formId}-consultation-helper`;
+  const needsHelperId = `${formId}-needs-helper`;
+  const needsNoticeId = `${formId}-needs-notice`;
+
+  useEffect(() => {
+    if (status === "success" && successHeadingRef.current) {
+      successHeadingRef.current.focus();
+    }
+  }, [status]);
+
+  const updateField = (name, value) => {
+    setValues((current) => ({ ...current, [name]: value }));
+    setErrors((current) => {
+      if (!current[name]) {
+        return current;
+      }
+      const next = { ...current };
+      delete next[name];
+      return next;
+    });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (status === "submitting") {
+      return;
+    }
+
+    const nextErrors = validate(values);
+    setErrors(nextErrors);
+
+    if (Object.keys(nextErrors).length > 0) {
+      setStatus("invalid");
+      setFormMessage(consultationFormCopy.invalidMessage);
+      return;
+    }
+
+    if (!submissionEnabled) {
+      setStatus("inactive");
+      setFormMessage(consultationFormCopy.inactiveNotice);
+      return;
+    }
+
+    setStatus("submitting");
+    setFormMessage("");
+
+    try {
+      const response = await fetch(formProvider.consultationEndpoint.trim(), {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fullName: values.fullName.trim(),
+          email: values.email.trim(),
+          phone: values.phone.trim(),
+          preferredContact: values.preferredContact,
+          serviceNeeded: values.serviceNeeded,
+          location: values.location.trim(),
+          consultationTimeframe: values.consultationTimeframe,
+          serviceTimeframe: values.serviceTimeframe,
+          needs: values.needs.trim(),
+          referralSource: values.referralSource,
+          consent: values.consent,
+          _subject: `HNM consultation: ${values.serviceNeeded}`,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Form submission failed");
+      }
+
+      setValues(emptyValues);
+      setErrors({});
+      setStatus("success");
+      setFormMessage("");
+    } catch {
+      setStatus("error");
+      setFormMessage(consultationFormCopy.errorMessage);
+    }
+  };
+
+  const { fields, groups } = consultationFormCopy;
+  const isSubmitting = status === "submitting";
+
+  return (
+    <Box
+      component="section"
+      aria-labelledby={
+        status === "success"
+          ? "consultation-success-heading"
+          : "consultation-form-heading"
+      }
+      sx={{
+        py: { xs: 7, md: 10 },
+        bgcolor: "primary.dark",
+        color: "common.white",
+      }}
+    >
+      <Container maxWidth="md">
+        {status === "success" ? (
+          <ConsultationSuccess headingRef={successHeadingRef} />
+        ) : (
+          <>
+            <Typography
+              id="consultation-form-heading"
+              variant="h2"
+              component="h2"
+              sx={{ mb: 1.5, color: "common.white" }}
+            >
+              {consultationFormCopy.title}
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{ mb: 3, maxWidth: "40rem", color: "rgba(255,255,255,0.9)" }}
+            >
+              {consultationFormCopy.supporting}
+            </Typography>
+
+            <ConsultationPrivacyNotice />
+
+            <Box
+              component="form"
+              noValidate
+              onSubmit={handleSubmit}
+              aria-label="Consultation request form"
+              sx={{
+                p: { xs: 2.5, md: 3.5 },
+                border: "1px solid",
+                borderColor: "rgba(255,255,255,0.18)",
+                borderRadius: `${brandRadii.card}px`,
+                bgcolor: "background.default",
+                color: "text.primary",
+              }}
+            >
+              <Stack spacing={4}>
+                {!submissionEnabled ? (
+                  <Alert severity="info" role="status">
+                    {consultationFormCopy.inactiveNotice}
+                  </Alert>
+                ) : null}
+
+                <FieldGroup title={groups.contact}>
+                  <TextField
+                    id={`${formId}-fullName`}
+                    name={fields.fullName.name}
+                    label={fields.fullName.label}
+                    value={values.fullName}
+                    onChange={(event) =>
+                      updateField("fullName", event.target.value)
+                    }
+                    error={Boolean(errors.fullName)}
+                    helperText={errors.fullName}
+                    required
+                    autoComplete="name"
+                    disabled={isSubmitting}
+                  />
+
+                  <Grid container spacing={2.5}>
+                    <Grid size={{ xs: 12, sm: 6 }}>
+                      <TextField
+                        id={`${formId}-email`}
+                        name={fields.email.name}
+                        label={fields.email.label}
+                        type="email"
+                        value={values.email}
+                        onChange={(event) =>
+                          updateField("email", event.target.value)
+                        }
+                        error={Boolean(errors.email)}
+                        helperText={errors.email}
+                        required
+                        autoComplete="email"
+                        disabled={isSubmitting}
+                      />
+                    </Grid>
+                    <Grid size={{ xs: 12, sm: 6 }}>
+                      <TextField
+                        id={`${formId}-phone`}
+                        name={fields.phone.name}
+                        label={fields.phone.label}
+                        type="tel"
+                        value={values.phone}
+                        onChange={(event) =>
+                          updateField("phone", event.target.value)
+                        }
+                        error={Boolean(errors.phone)}
+                        helperText={errors.phone}
+                        required
+                        autoComplete="tel"
+                        disabled={isSubmitting}
+                      />
+                    </Grid>
+                  </Grid>
+
+                  <FormControl
+                    component="fieldset"
+                    error={Boolean(errors.preferredContact)}
+                    required
+                    disabled={isSubmitting}
+                  >
+                    <FormLabel component="legend">
+                      {fields.preferredContact.label}
+                    </FormLabel>
+                    <RadioGroup
+                      name={fields.preferredContact.name}
+                      value={values.preferredContact}
+                      onChange={(event) =>
+                        updateField("preferredContact", event.target.value)
+                      }
+                    >
+                      {contactMethodOptions.map((option) => (
+                        <FormControlLabel
+                          key={option.value}
+                          value={option.value}
+                          control={<Radio />}
+                          label={option.label}
+                        />
+                      ))}
+                    </RadioGroup>
+                    {errors.preferredContact ? (
+                      <FormHelperText>{errors.preferredContact}</FormHelperText>
+                    ) : null}
+                  </FormControl>
+                </FieldGroup>
+
+                <FieldGroup title={groups.service}>
+                  <TextField
+                    id={`${formId}-serviceNeeded`}
+                    name={fields.serviceNeeded.name}
+                    label={fields.serviceNeeded.label}
+                    select
+                    value={values.serviceNeeded}
+                    onChange={(event) =>
+                      updateField("serviceNeeded", event.target.value)
+                    }
+                    error={Boolean(errors.serviceNeeded)}
+                    helperText={errors.serviceNeeded}
+                    required
+                    disabled={isSubmitting}
+                  >
+                    <MenuItem value="">
+                      <em>Select a service</em>
+                    </MenuItem>
+                    {serviceNeededOptions.map((option) => (
+                      <MenuItem key={option.value} value={option.value}>
+                        {option.label}
+                      </MenuItem>
+                    ))}
+                  </TextField>
+
+                  <TextField
+                    id={`${formId}-location`}
+                    name={fields.location.name}
+                    label={fields.location.label}
+                    value={values.location}
+                    onChange={(event) =>
+                      updateField("location", event.target.value)
+                    }
+                    error={Boolean(errors.location)}
+                    helperText={errors.location || fields.location.helperText}
+                    required
+                    disabled={isSubmitting}
+                    slotProps={{
+                      formHelperText: { id: locationHelperId },
+                      htmlInput: {
+                        "aria-describedby": locationHelperId,
+                      },
+                    }}
+                  />
+
+                  <TextField
+                    id={`${formId}-consultationTimeframe`}
+                    name={fields.consultationTimeframe.name}
+                    label={fields.consultationTimeframe.label}
+                    select
+                    value={values.consultationTimeframe}
+                    onChange={(event) =>
+                      updateField("consultationTimeframe", event.target.value)
+                    }
+                    error={Boolean(errors.consultationTimeframe)}
+                    helperText={
+                      errors.consultationTimeframe ||
+                      fields.consultationTimeframe.helperText
+                    }
+                    required
+                    disabled={isSubmitting}
+                    slotProps={{
+                      formHelperText: { id: consultationHelperId },
+                    }}
+                  >
+                    <MenuItem value="">
+                      <em>Select a timeframe</em>
+                    </MenuItem>
+                    {consultationTimeframeOptions.map((option) => (
+                      <MenuItem key={option.value} value={option.value}>
+                        {option.label}
+                      </MenuItem>
+                    ))}
+                  </TextField>
+
+                  <TextField
+                    id={`${formId}-serviceTimeframe`}
+                    name={fields.serviceTimeframe.name}
+                    label={fields.serviceTimeframe.label}
+                    select
+                    value={values.serviceTimeframe}
+                    onChange={(event) =>
+                      updateField("serviceTimeframe", event.target.value)
+                    }
+                    error={Boolean(errors.serviceTimeframe)}
+                    helperText={errors.serviceTimeframe}
+                    required
+                    disabled={isSubmitting}
+                  >
+                    <MenuItem value="">
+                      <em>Select when service may be needed</em>
+                    </MenuItem>
+                    {serviceTimeframeOptions.map((option) => (
+                      <MenuItem key={option.value} value={option.value}>
+                        {option.label}
+                      </MenuItem>
+                    ))}
+                  </TextField>
+                </FieldGroup>
+
+                <FieldGroup title={groups.additional}>
+                  <Box>
+                    <TextField
+                      id={`${formId}-needs`}
+                      name={fields.needs.name}
+                      label={fields.needs.label}
+                      value={values.needs}
+                      onChange={(event) =>
+                        updateField(
+                          "needs",
+                          event.target.value.slice(0, fields.needs.maxLength),
+                        )
+                      }
+                      error={Boolean(errors.needs)}
+                      helperText={errors.needs || fields.needs.helperText}
+                      required
+                      multiline
+                      minRows={4}
+                      maxRows={8}
+                      disabled={isSubmitting}
+                      slotProps={{
+                        formHelperText: { id: needsHelperId },
+                        htmlInput: {
+                          maxLength: fields.needs.maxLength,
+                          "aria-describedby": `${needsHelperId} ${needsNoticeId}`,
+                        },
+                      }}
+                    />
+                    <Typography
+                      id={needsNoticeId}
+                      variant="caption"
+                      color="text.secondary"
+                      sx={{ display: "block", mt: 1, lineHeight: 1.5 }}
+                    >
+                      {fields.needs.sensitiveNotice}
+                    </Typography>
+                  </Box>
+
+                  <TextField
+                    id={`${formId}-referralSource`}
+                    name={fields.referralSource.name}
+                    label={fields.referralSource.label}
+                    select
+                    value={values.referralSource}
+                    onChange={(event) =>
+                      updateField("referralSource", event.target.value)
+                    }
+                    disabled={isSubmitting}
+                  >
+                    <MenuItem value="">
+                      <em>Select an option (optional)</em>
+                    </MenuItem>
+                    {referralSourceOptions.map((option) => (
+                      <MenuItem key={option.value} value={option.value}>
+                        {option.label}
+                      </MenuItem>
+                    ))}
+                  </TextField>
+
+                  <FormControl error={Boolean(errors.consent)} required>
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          name={fields.consent.name}
+                          checked={values.consent}
+                          onChange={(event) =>
+                            updateField("consent", event.target.checked)
+                          }
+                          disabled={isSubmitting}
+                          slotProps={{
+                            input: {
+                              "aria-describedby": errors.consent
+                                ? consentErrorId
+                                : undefined,
+                            },
+                          }}
+                        />
+                      }
+                      label={
+                        <Typography variant="body2" component="span">
+                          {fields.consent.label}{" "}
+                          <AppLink
+                            href={routes.privacy}
+                            underline="hover"
+                            sx={{ fontWeight: 600, color: "primary.dark" }}
+                          >
+                            Privacy information
+                          </AppLink>
+                          .
+                        </Typography>
+                      }
+                    />
+                    {errors.consent ? (
+                      <FormHelperText id={consentErrorId}>
+                        {errors.consent}
+                      </FormHelperText>
+                    ) : null}
+                  </FormControl>
+                </FieldGroup>
+
+                <Box id={statusId} aria-live="polite">
+                  {formMessage && status === "error" ? (
+                    <Alert severity="error" role="alert">
+                      {formMessage}
+                    </Alert>
+                  ) : null}
+                  {formMessage &&
+                  (status === "inactive" || status === "invalid") ? (
+                    <Alert
+                      severity={status === "invalid" ? "warning" : "info"}
+                      role="alert"
+                    >
+                      {formMessage}
+                    </Alert>
+                  ) : null}
+                </Box>
+
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  size="large"
+                  disabled={isSubmitting}
+                  aria-busy={isSubmitting}
+                  sx={{
+                    alignSelf: { xs: "stretch", sm: "flex-start" },
+                    minHeight: 48,
+                    width: { xs: "100%", sm: "auto" },
+                  }}
+                >
+                  {isSubmitting
+                    ? consultationFormCopy.submittingLabel
+                    : consultationFormCopy.submitLabel}
+                </Button>
+              </Stack>
+            </Box>
+          </>
+        )}
+      </Container>
+    </Box>
+  );
+}

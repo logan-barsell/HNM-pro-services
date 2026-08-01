@@ -95,3 +95,11 @@ Use obvious placeholders such as:
 - `[BUSINESS HOURS]`
 
 Placeholders must remain clearly marked until replaced with client-approved content. Do not publish placeholders as if they were final copy.
+
+## Privacy Copy
+
+- Write an operational privacy notice that matches actual website behavior
+- Do not invent providers, retention periods, analytics, cookies, or compliance claims
+- Do not present the notice as attorney-reviewed unless legal review has occurred
+- Do not claim “no cookies whatsoever,” perfect security, HIPAA compliance, or CCPA/GDPR rights without verification
+- Keep `src/content/privacy.js` as the source of truth for last-updated date and provider names
