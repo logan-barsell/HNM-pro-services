@@ -1,0 +1,52 @@
+# Dependencies — large and not useful for code context
+node_modules/
+
+# Next.js and build outputs
+.next/
+out/
+dist/
+build/
+
+# Test coverage reports
+coverage/
+.nyc_output/
+
+# Lockfile conflict artifacts
+*.orig
+package-lock.json.backup
+yarn.lock.backup
+
+# Logs and temporary files
+logs/
+*.log
+tmp/
+temp/
+*.tmp
+*.temp
+.cache/
+
+# Large generated or archived media
+*.mp4
+*.mov
+*.avi
+*.webm
+!public/**/*.mp4
+!public/**/*.webm
+
+# Deployment archives and local deploy artifacts
+*.tar
+*.tar.gz
+*.zip
+deploy/
+deployment/
+release-artifacts/
+
+# Local environment secrets
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Git internals
+.git/

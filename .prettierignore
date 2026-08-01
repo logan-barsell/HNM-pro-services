@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+
+# Next.js / build output
+.next/
+out/
+dist/
+build/
+
+# Coverage
+coverage/
+.nyc_output/
+
+# Minified and generated files
+*.min.js
+*.min.css
+*.map
+
+# Lockfiles
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Public binary / static assets
+public/**/*.png
+public/**/*.jpg
+public/**/*.jpeg
+public/**/*.gif
+public/**/*.webp
+public/**/*.avif
+public/**/*.ico
+public/**/*.svg
+public/**/*.mp4
+public/**/*.webm
+public/**/*.woff
+public/**/*.woff2
+public/**/*.ttf
+public/**/*.eot
