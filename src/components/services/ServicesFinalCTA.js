@@ -12,8 +12,7 @@ export default function ServicesFinalCTA() {
       aria-labelledby="services-final-cta-heading"
       sx={{
         py: { xs: 8, md: 11 },
-        bgcolor: "primary.dark",
-        color: "common.white",
+        bgcolor: "background.default",
       }}
     >
       <Container maxWidth="md" sx={{ textAlign: "center" }}>
@@ -23,7 +22,6 @@ export default function ServicesFinalCTA() {
           component="h2"
           sx={{
             mb: 2.5,
-            color: "common.white",
             fontSize: {
               xs: "clamp(1.9rem, 1.5rem + 2vw, 2.6rem)",
               md: "clamp(2.3rem, 1.9rem + 1.2vw, 3rem)",
@@ -34,9 +32,9 @@ export default function ServicesFinalCTA() {
         </Typography>
         <Typography
           variant="body1"
+          color="text.secondary"
           sx={{
             mb: 4,
-            color: "rgba(255,255,255,0.9)",
             maxWidth: "34rem",
             mx: "auto",
             fontSize: { xs: "1.05rem", md: "1.125rem" },
@@ -55,32 +53,13 @@ export default function ServicesFinalCTA() {
           <PrimaryCTA
             label={servicesFinalCta.primaryCta.label}
             href={servicesFinalCta.primaryCta.href}
-            fullWidth
-            sx={{
-              width: { xs: "100%", sm: "auto" },
-              bgcolor: "common.white",
-              color: "primary.dark",
-              px: { sm: 4 },
-              "&:hover": {
-                bgcolor: "background.default",
-                color: "primary.dark",
-              },
-            }}
+            sx={{ width: { xs: "100%", sm: "auto" } }}
           />
           <PrimaryCTA
             variant="outlined"
             label={servicesFinalCta.secondaryCta.label}
             href={servicesFinalCta.secondaryCta.href}
-            fullWidth
-            sx={{
-              width: { xs: "100%", sm: "auto" },
-              borderColor: "rgba(255,255,255,0.7)",
-              color: "common.white",
-              "&:hover": {
-                borderColor: "common.white",
-                bgcolor: "rgba(255,255,255,0.1)",
-              },
-            }}
+            sx={{ width: { xs: "100%", sm: "auto" } }}
           />
         </Stack>
       </Container>

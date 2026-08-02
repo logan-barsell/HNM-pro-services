@@ -1,6 +1,5 @@
 import AboutFinalCTA from "@/components/about/AboutFinalCTA";
 import AboutHero from "@/components/about/AboutHero";
-import ClientExpectations from "@/components/about/ClientExpectations";
 import MissionSection from "@/components/about/MissionSection";
 import OriginStory from "@/components/about/OriginStory";
 import OwnerIntroduction from "@/components/about/OwnerIntroduction";
@@ -24,7 +23,6 @@ export default function AboutPage() {
       <OriginStory />
       <ValuesSection />
       <QualificationsSection />
-      <ClientExpectations />
       <MissionSection />
       <AboutFinalCTA />
     </>

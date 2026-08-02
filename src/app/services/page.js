@@ -1,5 +1,4 @@
 import ServiceDetailSection from "@/components/services/ServiceDetailSection";
-import ServiceProcess from "@/components/services/ServiceProcess";
 import ServiceRegions from "@/components/services/ServiceRegions";
 import ServicesFinalCTA from "@/components/services/ServicesFinalCTA";
 import ServicesHero from "@/components/services/ServicesHero";
@@ -26,7 +25,6 @@ export default function ServicesPage() {
         />
       ))}
       <ServiceRegions />
-      <ServiceProcess />
       <ServicesFinalCTA />
     </>
   );

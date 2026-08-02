@@ -1,10 +1,12 @@
+import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
+import PhoneOutlinedIcon from "@mui/icons-material/PhoneOutlined";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { contactBusiness, contactInfo } from "@/content/contact";
+import ContactValueLink from "@/components/shared/ContactValueLink";
 import { brandRadii } from "@/theme/brandTokens";
 import {
   isApprovedContactValue,
@@ -67,59 +69,37 @@ export default function ContactDetails() {
           {contactInfo.supporting}
         </Typography>
 
+        <Stack spacing={2} sx={{ alignItems: "flex-start", mb: 4 }}>
+          {phoneApproved && telHref ? (
+            <ContactValueLink
+              href={telHref}
+              icon={PhoneOutlinedIcon}
+              label={contactInfo.phone.actionLabel}
+              value={contactBusiness.phone}
+              tone="cream"
+            />
+          ) : (
+            <Typography variant="body2" color="text.secondary">
+              {contactInfo.phone.unavailable}
+            </Typography>
+          )}
+
+          {emailApproved && mailHref ? (
+            <ContactValueLink
+              href={mailHref}
+              icon={EmailOutlinedIcon}
+              label={contactInfo.email.actionLabel}
+              value={contactBusiness.email}
+              tone="cream"
+            />
+          ) : (
+            <Typography variant="body2" color="text.secondary">
+              {contactInfo.email.unavailable}
+            </Typography>
+          )}
+        </Stack>
+
         <Grid container spacing={2.5}>
-          <Grid size={{ xs: 12, sm: 6 }}>
-            <DetailBlock label={contactInfo.phone.label}>
-              {phoneApproved && telHref ? (
-                <Stack spacing={1.25} sx={{ alignItems: "flex-start" }}>
-                  <Typography variant="body1" sx={{ fontWeight: 600 }}>
-                    {contactBusiness.phone}
-                  </Typography>
-                  <Button
-                    component="a"
-                    href={telHref}
-                    variant="outlined"
-                    color="primary"
-                    aria-label={`${contactInfo.phone.actionLabel} at ${contactBusiness.phone}`}
-                    sx={{ minHeight: 44 }}
-                  >
-                    {contactInfo.phone.actionLabel}
-                  </Button>
-                </Stack>
-              ) : (
-                <Typography variant="body2" color="text.secondary">
-                  {contactInfo.phone.unavailable}
-                </Typography>
-              )}
-            </DetailBlock>
-          </Grid>
-
-          <Grid size={{ xs: 12, sm: 6 }}>
-            <DetailBlock label={contactInfo.email.label}>
-              {emailApproved && mailHref ? (
-                <Stack spacing={1.25} sx={{ alignItems: "flex-start" }}>
-                  <Typography variant="body1" sx={{ fontWeight: 600 }}>
-                    {contactBusiness.email}
-                  </Typography>
-                  <Button
-                    component="a"
-                    href={mailHref}
-                    variant="outlined"
-                    color="primary"
-                    aria-label={`${contactInfo.email.actionLabel} at ${contactBusiness.email}`}
-                    sx={{ minHeight: 44 }}
-                  >
-                    {contactInfo.email.actionLabel}
-                  </Button>
-                </Stack>
-              ) : (
-                <Typography variant="body2" color="text.secondary">
-                  {contactInfo.email.unavailable}
-                </Typography>
-              )}
-            </DetailBlock>
-          </Grid>
-
           <Grid size={{ xs: 12, sm: 6 }}>
             <DetailBlock label={contactInfo.hours.label}>
               <Typography

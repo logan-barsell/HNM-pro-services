@@ -39,7 +39,7 @@ export const reviewsHero = {
 export const testimonials = [];
 
 export const clientsValue = {
-  title: "What HNM aims to provide",
+  title: "What HNM Aims to Provide",
   supporting:
     "These principles guide how HNM approaches every service relationship. They are commitments to the work—not claims that every client has already left a public review.",
   items: [

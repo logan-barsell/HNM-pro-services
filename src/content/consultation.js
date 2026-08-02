@@ -17,7 +17,7 @@ export const consultationHero = {
 
 export const consultationProcess = {
   title: "What happens next?",
-  disclaimer:
+  supporting:
     "Submitting the form does not confirm a consultation time or guarantee service availability.",
   steps: [
     {
@@ -90,7 +90,7 @@ export const consultationFormCopy = {
   submitLabel: "Request My Free Consultation",
   submittingLabel: "Sending request…",
   inactiveNotice:
-    "Online consultation requests are not connected yet. The form and validation are ready; a hosted form provider will be configured before launch. Until then, please use the phone or email options below once available, or visit the Contact page.",
+    "Online consultation requests are not connected yet. The form and validation are ready; a hosted form provider will be configured before launch. Until then, please use the phone or email options below, or visit the Contact page.",
   errorMessage:
     "We could not send your request. Please try again, or contact HNM directly using the information below.",
   invalidMessage: "Please correct the highlighted fields and try again.",

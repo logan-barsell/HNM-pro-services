@@ -11,10 +11,10 @@ export const brandAssets = {
   icon192: "/brand/android-chrome-192x192.png",
   icon512: "/brand/android-chrome-512x512.png",
   manifest: "/brand/site.webmanifest",
-};
-
-/** Future home hero media — set homeHero.videoSrc / posterSrc when files exist. */
-export const futureMediaAssets = {
-  heroVideo: "/media/hero.mp4",
-  heroPoster: "/media/hero-poster.webp",
+  heroVideo: "/brand/HNM-video.mp4",
+  ownerPortrait: "/brand/bio_img.PNG",
+  homeSupporting1: "/brand/home-1.jpg",
+  petCare: "/brand/petcare.jpg",
+  seniorCare: "/brand/seniorcare.jpg",
+  homeCare: "/brand/homecare.png",
 };

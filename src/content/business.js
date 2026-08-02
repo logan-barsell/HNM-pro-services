@@ -12,10 +12,8 @@ export const business = {
   shortDescription: "Professional local support for people, pets, and homes.",
   // Replace with the production domain before launch.
   siteUrl: "https://www.example.com",
-  // Replace with client-approved contact details before launch.
-  // Empty string or [BRACKET] placeholders are not valid public contact links.
-  phone: "[CLIENT PHONE]",
-  email: "[CLIENT EMAIL]",
+  phone: "(925) 640-7095",
+  email: "holly@hnmproservices.com",
   serviceRegion: "[APPROVED SERVICE REGION]",
   businessHours: "[BUSINESS HOURS]",
 };

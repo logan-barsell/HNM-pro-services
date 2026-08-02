@@ -1,9 +1,10 @@
 import { business } from "@/content/business";
+import { brandAssets } from "@/content/assets";
 import { routes } from "@/content/routes";
 
 /**
  * About page copy.
- * Biography, qualifications, and portrait remain placeholders until client-approved.
+ * Biography and qualifications remain placeholders until client-approved.
  */
 
 export const aboutHero = {
@@ -31,32 +32,38 @@ export const ownerIntroduction = {
   trustQuote:
     "Clients are not simply hiring a service. They are choosing someone they can trust with a loved one, pet, or home.",
   portraitLabel: "Owner portrait",
-  portraitAlt:
-    "Portrait of the owner of HNM Professional Services, coming soon",
-  // Set to "/brand/owner-portrait.webp" only when the file exists.
-  portraitSrc: null,
+  portraitAlt: "Owner of HNM Professional Services",
+  portraitSrc: brandAssets.ownerPortrait,
 };
 
 export const originStory = {
-  title: "Why HNM Professional Services was created",
+  title: "Why HNM Professional Services Was Created",
   introduction:
     "HNM was created to provide local clients with dependable, personal support across the areas that matter most: people, pets, and home.",
-  pendingTopics: [
+  topics: [
     {
-      title: "What inspired the business",
-      body: "Approved details about what inspired HNM Professional Services will be shared here.",
+      id: "inspired",
+      title: "What Inspired the Business",
+      description:
+        "HNM grew from a desire to offer care that feels personal and steady—support families can trust when they need an extra hand with a loved one, a pet, or a home.",
     },
     {
-      title: "The needs observed",
-      body: "Approved notes about the client needs that shaped this work will appear here.",
+      id: "needs",
+      title: "The Needs Observed",
+      description:
+        "Many households need reliable help that does not feel corporate or impersonal: companionship for seniors, attentive pet care, and peace of mind while away from home.",
     },
     {
-      title: "Why these services belong together",
-      body: "Approved explanation of how pet care, companion care, and home support fit under one personal service will be added here.",
+      id: "together",
+      title: "Why These Services Belong Together",
+      description:
+        "People, pets, and homes are connected in everyday life. Offering companion care, pet sitting, and house sitting under one thoughtful service makes it easier to get support that fits the whole household.",
     },
     {
-      title: "What clients should feel",
-      body: "Approved wording about the experience the owner hopes clients feel when working with HNM will be published here.",
+      id: "feel",
+      title: "What Clients Should Feel",
+      description:
+        "Clients should feel informed, respected, and confident—knowing expectations are clear, communication is dependable, and their person, pet, or home is in caring hands.",
     },
   ],
 };
@@ -104,37 +111,6 @@ export const qualifications = {
     "Areas of familiarity",
     "Professional standards",
     "Insurance or background-check information, if applicable and confirmed",
-  ],
-};
-
-export const clientExpectations = {
-  title: "What clients can expect",
-  supporting:
-    "Beginning with a consultation helps everyone understand the service, timing, and boundaries before any work begins. Submitting a request does not guarantee acceptance or availability.",
-  items: [
-    {
-      number: "1",
-      title: "A thoughtful initial conversation",
-      description:
-        "Every new client begins with a free consultation to discuss the service, timing, location, routines, and expectations.",
-    },
-    {
-      number: "2",
-      title: "Clear service expectations",
-      description:
-        "Responsibilities and boundaries are confirmed before service begins.",
-    },
-    {
-      number: "3",
-      title: "Respectful, dependable communication",
-      description: "Clients should know how and when updates will be provided.",
-    },
-    {
-      number: "4",
-      title: "Support shaped around the agreed needs",
-      description:
-        "Services are shaped around the agreed needs rather than treated as a generic package.",
-    },
   ],
 };
 

@@ -1,21 +1,17 @@
 "use client";
 
-import CloseIcon from "@mui/icons-material/Close";
-import MenuIcon from "@mui/icons-material/Menu";
 import Box from "@mui/material/Box";
-import Divider from "@mui/material/Divider";
-import Drawer from "@mui/material/Drawer";
+import Fade from "@mui/material/Fade";
 import IconButton from "@mui/material/IconButton";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
+import Modal from "@mui/material/Modal";
+import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import NextLink from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { primaryNavigation } from "@/content/navigation";
 import PrimaryCTA from "@/components/shared/PrimaryCTA";
+import { navCollapseWidth, navMobileChromeSx } from "@/theme/layout";
 
 function isActivePath(pathname, href) {
   if (href === "/") {
@@ -24,95 +20,198 @@ function isActivePath(pathname, href) {
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
-export default function MobileNavigation({ tone = "default" }) {
+/**
+ * Two thin lines that morph into an X when open.
+ */
+function MenuToggleIcon({ open }) {
+  const lineSx = {
+    position: "absolute",
+    left: 0,
+    width: "100%",
+    height: 1.5,
+    borderRadius: 1,
+    bgcolor: "currentColor",
+    transition: (theme) =>
+      theme.transitions.create(["transform", "top"], {
+        duration: theme.transitions.duration.shorter,
+        easing: theme.transitions.easing.easeInOut,
+      }),
+    "@media (prefers-reduced-motion: reduce)": {
+      transition: "none",
+    },
+  };
+
+  return (
+    <Box
+      aria-hidden
+      sx={{
+        position: "relative",
+        width: 22,
+        height: 14,
+      }}
+    >
+      <Box
+        sx={{
+          ...lineSx,
+          top: open ? "50%" : 0,
+          transform: open
+            ? "translateY(-50%) rotate(45deg)"
+            : "translateY(0) rotate(0deg)",
+        }}
+      />
+      <Box
+        sx={{
+          ...lineSx,
+          top: open ? "50%" : "100%",
+          transform: open
+            ? "translateY(-50%) rotate(-45deg)"
+            : "translateY(-100%) rotate(0deg)",
+        }}
+      />
+    </Box>
+  );
+}
+
+export default function MobileNavigation({
+  tone = "default",
+  onOpenChange,
+}) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const onDark = tone === "onDark";
 
-  const closeMenu = () => setOpen(false);
+  const setMenuOpen = (nextOpen) => {
+    setOpen(nextOpen);
+    onOpenChange?.(nextOpen);
+  };
+
+  const toggleMenu = () => setMenuOpen(!open);
+  const closeMenu = () => setMenuOpen(false);
+
+  useEffect(() => {
+    const media = window.matchMedia(`(min-width: ${navCollapseWidth}px)`);
+    const handleChange = (event) => {
+      if (event.matches) {
+        setOpen(false);
+        onOpenChange?.(false);
+      }
+    };
+
+    media.addEventListener("change", handleChange);
+    return () => media.removeEventListener("change", handleChange);
+  }, [onOpenChange]);
+
+  useEffect(() => {
+    if (!open) {
+      return undefined;
+    }
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [open]);
 
   return (
-    <Box sx={{ display: { xs: "flex", md: "none" }, alignItems: "center" }}>
-      <IconButton
-        edge="end"
-        aria-label="Open navigation menu"
-        aria-controls="mobile-navigation-drawer"
-        aria-expanded={open ? "true" : "false"}
-        onClick={() => setOpen(true)}
-        sx={{
-          color: onDark ? "common.white" : "primary.dark",
-          "&:hover": {
-            bgcolor: onDark ? "rgba(255,255,255,0.12)" : "action.hover",
-          },
-        }}
-      >
-        <MenuIcon />
-      </IconButton>
-
-      <Drawer
-        id="mobile-navigation-drawer"
-        anchor="right"
-        open={open}
-        onClose={closeMenu}
-        ModalProps={{ keepMounted: true }}
-        slotProps={{
-          paper: {
-            sx: {
-              width: "min(100%, 320px)",
-              px: 1,
-            },
-            "aria-label": "Mobile navigation",
-          },
-        }}
-      >
-        <Box
+    <>
+      <Box sx={navMobileChromeSx}>
+        <IconButton
+          edge="end"
+          aria-label={open ? "Close navigation menu" : "Open navigation menu"}
+          aria-controls="mobile-navigation-menu"
+          aria-expanded={open ? "true" : "false"}
+          onClick={toggleMenu}
           sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            px: 1.5,
-            py: 1.5,
+            color: onDark ? "common.white" : "primary.dark",
+            "&:hover": {
+              bgcolor: onDark ? "rgba(255,255,255,0.12)" : "action.hover",
+            },
           }}
         >
-          <Typography
-            component="span"
-            sx={{ fontWeight: 600, color: "text.primary" }}
-          >
-            Menu
-          </Typography>
-          <IconButton aria-label="Close navigation menu" onClick={closeMenu}>
-            <CloseIcon />
-          </IconButton>
-        </Box>
-        <Divider />
-        <List component="nav" aria-label="Primary mobile" sx={{ px: 0.5 }}>
-          {primaryNavigation.map((item) => {
-            const active = isActivePath(pathname, item.href);
+          <MenuToggleIcon open={open} />
+        </IconButton>
+      </Box>
 
-            return (
-              <ListItem key={item.href} disablePadding sx={{ mb: 0.5 }}>
-                <ListItemButton
-                  component={NextLink}
-                  href={item.href}
-                  onClick={closeMenu}
-                  selected={active}
-                  aria-current={active ? "page" : undefined}
-                >
-                  <ListItemText
-                    primary={item.label}
-                    slotProps={{
-                      primary: { sx: { fontWeight: active ? 700 : 600 } },
+      <Modal
+        open={open}
+        onClose={closeMenu}
+        closeAfterTransition
+        disableScrollLock
+        hideBackdrop
+        sx={{
+          zIndex: (theme) => theme.zIndex.modal,
+        }}
+      >
+        <Fade in={open} timeout={320}>
+          <Box
+            id="mobile-navigation-menu"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Site navigation"
+            sx={{
+              position: "absolute",
+              inset: 0,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              bgcolor: (theme) =>
+                `color-mix(in srgb, ${theme.palette.background.default} 52%, transparent)`,
+              backdropFilter: "blur(20px) saturate(1.15)",
+              WebkitBackdropFilter: "blur(20px) saturate(1.15)",
+              outline: "none",
+              px: 3,
+            }}
+          >
+            <Stack
+              component="nav"
+              aria-label="Primary mobile"
+              spacing={{ xs: 2.5, sm: 3 }}
+              sx={{ alignItems: "center", width: "100%" }}
+            >
+              {primaryNavigation.map((item) => {
+                const active = isActivePath(pathname, item.href);
+
+                return (
+                  <Typography
+                    key={item.href}
+                    component={NextLink}
+                    href={item.href}
+                    onClick={closeMenu}
+                    aria-current={active ? "page" : undefined}
+                    sx={{
+                      fontFamily: "var(--font-display), Georgia, serif",
+                      fontWeight: active ? 600 : 500,
+                      fontSize: {
+                        xs: "1.85rem",
+                        sm: "2.25rem",
+                      },
+                      lineHeight: 1.2,
+                      color: active ? "primary.dark" : "text.primary",
+                      textDecoration: "none",
+                      textAlign: "center",
+                      transition: (theme) =>
+                        theme.transitions.create("color", {
+                          duration: theme.transitions.duration.shorter,
+                        }),
+                      "&:hover": {
+                        color: "primary.dark",
+                      },
                     }}
-                  />
-                </ListItemButton>
-              </ListItem>
-            );
-          })}
-        </List>
-        <Box sx={{ px: 1.5, pt: 1, pb: 3 }}>
-          <PrimaryCTA fullWidth onClick={closeMenu} />
-        </Box>
-      </Drawer>
-    </Box>
+                  >
+                    {item.label}
+                  </Typography>
+                );
+              })}
+            </Stack>
+
+            <Box sx={{ mt: { xs: 5, sm: 6 }, width: "min(100%, 20rem)" }}>
+              <PrimaryCTA fullWidth onClick={closeMenu} />
+            </Box>
+          </Box>
+        </Fade>
+      </Modal>
+    </>
   );
 }

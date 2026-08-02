@@ -16,8 +16,8 @@ export default function ConsultationPage() {
   return (
     <>
       <ConsultationHero />
-      <ConsultationProcess />
       <ConsultationForm />
+      <ConsultationProcess />
       <AlternativeContact />
     </>
   );

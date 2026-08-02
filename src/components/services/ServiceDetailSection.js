@@ -5,6 +5,7 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
+import Image from "next/image";
 import MediaPlaceholder from "@/components/home/MediaPlaceholder";
 import ServiceBoundaryNote from "@/components/services/ServiceBoundaryNote";
 import PrimaryCTA from "@/components/shared/PrimaryCTA";
@@ -25,13 +26,33 @@ export default function ServiceDetailSection({
   ctaHref,
   imageLabel,
   imageAlt,
+  imageSrc,
   mediaFirst = false,
   tone = "cream",
 }) {
   const isGreen = tone === "green";
   const headingId = `${id}-heading`;
 
-  const media = (
+  const media = imageSrc ? (
+    <Box
+      sx={{
+        position: "relative",
+        borderRadius: `${brandRadii.media}px`,
+        overflow: "hidden",
+        minHeight: { xs: 240, md: 420 },
+        aspectRatio: "4 / 5",
+        bgcolor: isGreen ? "background.default" : "secondary.main",
+      }}
+    >
+      <Image
+        src={imageSrc}
+        alt={imageAlt || imageLabel}
+        fill
+        sizes="(max-width: 900px) 100vw, 40vw"
+        style={{ objectFit: "cover" }}
+      />
+    </Box>
+  ) : (
     <MediaPlaceholder
       label={imageLabel}
       aria-label={imageAlt || imageLabel}
@@ -128,34 +149,47 @@ export default function ServiceDetailSection({
             mb: 2,
             p: 2.5,
             borderRadius: `${brandRadii.card}px`,
-            bgcolor: "background.default",
+            bgcolor: isGreen ? "rgba(255,255,255,0.12)" : "background.default",
             border: "1px solid",
-            borderColor: isGreen ? "rgba(255,255,255,0.18)" : "divider",
-            color: "text.primary",
+            borderColor: isGreen ? "rgba(255,255,255,0.22)" : "divider",
+            color: isGreen ? "common.white" : "text.primary",
           }}
         >
           <Typography
             variant="h3"
             component="h3"
-            sx={{ typography: "h6", mb: 1 }}
+            sx={{
+              typography: "h6",
+              mb: 1,
+              color: isGreen ? "common.white" : "inherit",
+            }}
           >
             {goodFitTitle}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography
+            variant="body2"
+            sx={{
+              color: isGreen ? "rgba(255,255,255,0.85)" : "text.secondary",
+            }}
+          >
             {goodFit}
           </Typography>
         </Box>
       ) : null}
 
-      {boundaryNote ? (
-        <ServiceBoundaryNote title="Service boundaries">
-          {boundaryNote}
+      {expectationNote ? (
+        <ServiceBoundaryNote title="What to expect" tone={tone}>
+          {expectationNote}
         </ServiceBoundaryNote>
       ) : null}
 
-      {expectationNote ? (
-        <ServiceBoundaryNote title="What to expect">
-          {expectationNote}
+      {boundaryNote ? (
+        <ServiceBoundaryNote
+          title="Service boundaries"
+          tone={tone}
+          variant="disclaimer"
+        >
+          {boundaryNote}
         </ServiceBoundaryNote>
       ) : null}
 

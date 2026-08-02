@@ -22,7 +22,7 @@ export default function DesktopNavigation({ tone = "default" }) {
       component="nav"
       aria-label="Primary"
       sx={{
-        display: { xs: "none", md: "flex" },
+        display: "flex",
         alignItems: "center",
         gap: 0.25,
       }}

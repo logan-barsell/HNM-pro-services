@@ -22,9 +22,9 @@ export const contactHero = {
 };
 
 export const contactInfo = {
-  title: "Contact information",
+  title: "Contact Information",
   supporting:
-    "Reach HNM by phone or email once those details are published. Until then, intentional placeholders mark where approved contact information will appear.",
+    "Reach HNM by phone or email, or send a message using the form below.",
   phone: {
     label: "Phone",
     actionLabel: "Call HNM",
@@ -56,7 +56,7 @@ export const contactFormCopy = {
   successMessage:
     "Thank you for contacting HNM Professional Services. Your message has been received, and we’ll follow up using the contact information you provided.",
   inactiveNotice:
-    "Online message delivery is not connected yet. Form fields and validation are ready; a hosted form provider will be configured before launch. Until then, please use the phone or email above once available, or request a free consultation.",
+    "Online message delivery is not connected yet. Form fields and validation are ready; a hosted form provider will be configured before launch. Until then, please use the phone or email above, or request a free consultation.",
   privacyNotice:
     "By submitting this form, you agree that HNM Professional Services may use the information provided to respond to your inquiry. Please do not include sensitive medical, financial, security, or access information.",
   privacyLinkLabel: "Privacy information",
@@ -98,15 +98,6 @@ export const contactFormCopy = {
       name: "consent",
       requiredMessage: "Please confirm you consent to be contacted.",
     },
-  },
-};
-
-export const consultationGuidance = {
-  title: "Looking to discuss a new service?",
-  body: "New clients begin with a free consultation so HNM can learn about the service needed, location, timing, routines, and expectations before scheduling.",
-  cta: {
-    label: "Request a Free Consultation",
-    href: routes.consultation,
   },
 };
 

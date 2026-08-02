@@ -22,7 +22,7 @@ export default function TestimonialsSection() {
           component="h2"
           sx={{ mb: 1.5, textAlign: { xs: "center", md: "left" } }}
         >
-          What clients are saying
+          What Clients Are Saying
         </Typography>
 
         {hasTestimonials ? (

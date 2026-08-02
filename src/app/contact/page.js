@@ -1,7 +1,6 @@
 import ContactDetails from "@/components/contact/ContactDetails";
 import ContactFinalCTA from "@/components/contact/ContactFinalCTA";
 import ContactHero from "@/components/contact/ContactHero";
-import ConsultationGuidance from "@/components/contact/ConsultationGuidance";
 import GeneralContactForm from "@/components/contact/GeneralContactForm";
 import HoursAndServiceArea from "@/components/contact/HoursAndServiceArea";
 import ResponseProcess from "@/components/contact/ResponseProcess";
@@ -21,7 +20,6 @@ export default function ContactPage() {
       <ContactHero />
       <ContactDetails />
       <GeneralContactForm />
-      <ConsultationGuidance />
       <HoursAndServiceArea />
       <ResponseProcess />
       <ContactFinalCTA />

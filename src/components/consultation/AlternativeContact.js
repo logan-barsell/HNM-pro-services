@@ -1,5 +1,6 @@
+import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
+import PhoneOutlinedIcon from "@mui/icons-material/PhoneOutlined";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
@@ -8,8 +9,7 @@ import {
   consultationBusiness,
 } from "@/content/consultation";
 import AppLink from "@/components/shared/AppLink";
-import PrimaryCTA from "@/components/shared/PrimaryCTA";
-import { brandRadii } from "@/theme/brandTokens";
+import ContactValueLink from "@/components/shared/ContactValueLink";
 import {
   isApprovedContactValue,
   toMailtoHref,
@@ -26,93 +26,71 @@ export default function AlternativeContact() {
     <Box
       component="section"
       aria-labelledby="alternative-contact-heading"
-      sx={{ py: { xs: 7, md: 10 }, bgcolor: "background.default" }}
+      sx={{
+        py: { xs: 7, md: 10 },
+        bgcolor: "primary.dark",
+        color: "common.white",
+      }}
     >
       <Container maxWidth="md">
         <Typography
           id="alternative-contact-heading"
           variant="h2"
           component="h2"
-          sx={{ mb: 1.5 }}
+          sx={{ mb: 1.5, color: "common.white" }}
         >
           {alternativeContact.title}
         </Typography>
         <Typography
           variant="body1"
-          color="text.secondary"
-          sx={{ mb: 3.5, maxWidth: "40rem" }}
+          sx={{
+            mb: 3.5,
+            maxWidth: "40rem",
+            color: "rgba(255,255,255,0.9)",
+          }}
         >
           {alternativeContact.supporting}
         </Typography>
 
-        <Box
-          sx={{
-            p: { xs: 2.5, md: 3 },
-            borderRadius: `${brandRadii.card}px`,
-            bgcolor: "secondary.main",
-            border: "1px solid",
-            borderColor: "divider",
-          }}
-        >
-          <Stack spacing={2}>
-            {phoneApproved && telHref ? (
-              <Button
-                component="a"
-                href={telHref}
-                variant="outlined"
-                color="primary"
-                aria-label={`${alternativeContact.callLabel} at ${consultationBusiness.phone}`}
-                sx={{
-                  alignSelf: { xs: "stretch", sm: "flex-start" },
-                  minHeight: 44,
-                }}
-              >
-                {alternativeContact.callLabel}
-              </Button>
-            ) : (
-              <Typography variant="body2" color="text.secondary">
-                {alternativeContact.phoneUnavailable}
-              </Typography>
-            )}
-
-            {emailApproved && mailHref ? (
-              <Button
-                component="a"
-                href={mailHref}
-                variant="outlined"
-                color="primary"
-                aria-label={`${alternativeContact.emailLabel} at ${consultationBusiness.email}`}
-                sx={{
-                  alignSelf: { xs: "stretch", sm: "flex-start" },
-                  minHeight: 44,
-                }}
-              >
-                {alternativeContact.emailLabel}
-              </Button>
-            ) : (
-              <Typography variant="body2" color="text.secondary">
-                {alternativeContact.emailUnavailable}
-              </Typography>
-            )}
-
-            <PrimaryCTA
-              variant="outlined"
-              label={alternativeContact.contactPageLabel}
-              href={alternativeContact.contactHref}
-              sx={{
-                alignSelf: { xs: "stretch", sm: "flex-start" },
-                minHeight: 44,
-              }}
+        <Stack spacing={2} sx={{ alignItems: "flex-start" }}>
+          {phoneApproved && telHref ? (
+            <ContactValueLink
+              href={telHref}
+              icon={PhoneOutlinedIcon}
+              label={alternativeContact.callLabel}
+              value={consultationBusiness.phone}
+              tone="green"
             />
-          </Stack>
-        </Box>
+          ) : (
+            <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.75)" }}>
+              {alternativeContact.phoneUnavailable}
+            </Typography>
+          )}
 
-        <Typography variant="body2" color="text.secondary" sx={{ mt: 2.5 }}>
+          {emailApproved && mailHref ? (
+            <ContactValueLink
+              href={mailHref}
+              icon={EmailOutlinedIcon}
+              label={alternativeContact.emailLabel}
+              value={consultationBusiness.email}
+              tone="green"
+            />
+          ) : (
+            <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.75)" }}>
+              {alternativeContact.emailUnavailable}
+            </Typography>
+          )}
+        </Stack>
+
+        <Typography
+          variant="body2"
+          sx={{ mt: 3.5, color: "rgba(255,255,255,0.85)" }}
+        >
           Or visit the{" "}
           <AppLink
             href={alternativeContact.contactHref}
             underline="hover"
-            sx={{ fontWeight: 600, color: "primary.dark" }}
+            sx={{ fontWeight: 600, color: "common.white" }}
           >
             Contact page
           </AppLink>{" "}

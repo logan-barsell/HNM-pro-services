@@ -31,6 +31,9 @@ export default function OwnerIntroduction() {
               <Box
                 sx={{
                   position: "relative",
+                  width: "100%",
+                  maxWidth: { xs: 280, sm: 320, md: "100%" },
+                  mx: { xs: "auto", md: 0 },
                   borderRadius: `${brandRadii.media}px`,
                   overflow: "hidden",
                   aspectRatio: "4 / 5",
@@ -41,7 +44,7 @@ export default function OwnerIntroduction() {
                   src={portraitSrc}
                   alt={portraitAlt}
                   fill
-                  sizes="(max-width: 900px) 100vw, 40vw"
+                  sizes="(max-width: 600px) 280px, (max-width: 900px) 320px, 40vw"
                   style={{ objectFit: "cover" }}
                 />
               </Box>
@@ -51,66 +54,84 @@ export default function OwnerIntroduction() {
                 aria-label={portraitAlt}
                 minHeight={{ xs: 280, md: 420 }}
                 ratio="4 / 5"
+                sx={{
+                  maxWidth: { xs: 280, sm: 320, md: "100%" },
+                  mx: { xs: "auto", md: 0 },
+                }}
               />
             )}
           </Grid>
 
           <Grid size={{ xs: 12, md: 7 }}>
-            {ownerName ? (
-              <Typography
-                variant="overline"
-                component="p"
-                sx={{ color: "primary.dark", mb: 1.25 }}
-              >
-                {ownerName}
-              </Typography>
-            ) : null}
-
-            <Typography
-              id="owner-introduction-heading"
-              variant="h2"
-              component="h2"
-              sx={{ mb: 2.5 }}
-            >
-              {heading}
-            </Typography>
-
-            {paragraphs.map((paragraph) => (
-              <Typography
-                key={paragraph}
-                variant="body1"
-                color="text.secondary"
-                sx={{ mb: 2, fontSize: "1.05rem", maxWidth: "40rem" }}
-              >
-                {paragraph}
-              </Typography>
-            ))}
-
             <Box
-              component="blockquote"
               sx={{
-                m: 0,
-                mt: 3.5,
-                p: { xs: 2.5, md: 3 },
-                borderRadius: `${brandRadii.card}px`,
-                bgcolor: "secondary.main",
-                border: "1px solid",
-                borderColor: "divider",
-                borderLeft: "4px solid",
-                borderLeftColor: "primary.dark",
+                textAlign: { xs: "center", md: "left" },
               }}
             >
+              {ownerName ? (
+                <Typography
+                  variant="overline"
+                  component="p"
+                  sx={{ color: "primary.dark", mb: 1.25 }}
+                >
+                  {ownerName}
+                </Typography>
+              ) : null}
+
               <Typography
-                variant="body1"
+                id="owner-introduction-heading"
+                variant="h2"
+                component="h2"
+                sx={{ mb: 2.5 }}
+              >
+                {heading}
+              </Typography>
+
+              {paragraphs.map((paragraph) => (
+                <Typography
+                  key={paragraph}
+                  variant="body1"
+                  color="text.secondary"
+                  sx={{
+                    mb: 2,
+                    fontSize: "1.05rem",
+                    maxWidth: "40rem",
+                    mx: { xs: "auto", md: 0 },
+                  }}
+                >
+                  {paragraph}
+                </Typography>
+              ))}
+
+              <Box
+                component="blockquote"
                 sx={{
-                  fontFamily: "var(--font-display), Georgia, serif",
-                  fontSize: { xs: "1.2rem", md: "1.35rem" },
-                  lineHeight: 1.45,
-                  color: "text.primary",
+                  m: 0,
+                  mt: 3.5,
+                  mx: { xs: "auto", md: 0 },
+                  maxWidth: "40rem",
+                  p: { xs: 2.5, md: 3 },
+                  borderRadius: `${brandRadii.card}px`,
+                  bgcolor: "secondary.main",
+                  border: "1px solid",
+                  borderColor: "divider",
+                  borderLeft: "4px solid",
+                  borderLeftColor: "primary.dark",
+                  textAlign: { xs: "center", md: "left" },
                 }}
               >
-                “{trustQuote}”
-              </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    fontFamily: "var(--font-display), Georgia, serif",
+                    fontSize: { xs: "1.2rem", md: "1.35rem" },
+                    lineHeight: 1.45,
+                    color: "text.primary",
+                  }}
+                >
+                  “{trustQuote}”
+                </Typography>
+              </Box>
             </Box>
           </Grid>
         </Grid>

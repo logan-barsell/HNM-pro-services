@@ -1,4 +1,5 @@
 import { business, services as baseServices } from "@/content/business";
+import { brandAssets } from "@/content/assets";
 import { routes } from "@/content/routes";
 
 /**
@@ -20,8 +21,7 @@ export const homeHero = {
     label: "Explore Services",
     href: routes.services,
   },
-  // Set when hero media exists under public/media/
-  videoSrc: null,
+  videoSrc: brandAssets.heroVideo,
   posterSrc: null,
   mediaPlaceholder:
     "Hero lifestyle video and poster image will be added here when media assets are ready.",
@@ -30,7 +30,11 @@ export const homeHero = {
 export const homeIntro = {
   title: "A personal approach to everyday care",
   body: "Whether you need a trusted companion for a loved one, reliable care for your pets, or peace of mind while you are away from home, HNM Professional Services is here to help with clear communication and thoughtful support.",
-  imagePlaceholder: "Supporting photo will be added when client imagery is available.",
+  imageSrc: brandAssets.homeSupporting1,
+  imageAlt:
+    "Supportive care scene representing HNM Professional Services",
+  imagePlaceholder:
+    "Supporting photo will be added when client imagery is available.",
 };
 
 export const homeServices = baseServices.map((service) => ({
@@ -80,12 +84,14 @@ export const homeTrustPoints = [
 export const homeAboutPreview = {
   title: "About HNM",
   body: "[CLIENT BIO REQUIRED] A short introduction to the person behind HNM Professional Services will appear here once approved biography content is provided.",
+  portraitSrc: brandAssets.ownerPortrait,
+  portraitAlt: "Owner of HNM Professional Services",
   portraitPlaceholder: "Owner portrait will be added when photography is available.",
   cta: { label: "Read More", href: routes.about },
 };
 
 export const homeReviewsPreview = {
-  title: "What clients are saying",
+  title: "What Clients Are Saying",
   note: "Approved client testimonials will be added before launch. The cards below are layout placeholders only.",
   placeholders: [
     {
@@ -108,7 +114,7 @@ export const homeReviewsPreview = {
 };
 
 export const homeServiceArea = {
-  title: "Where we serve",
+  title: "Where We Serve",
   body: `HNM Professional Services provides local support within ${business.serviceRegion}. Final coverage details will be confirmed with the client before launch.`,
   mapPlaceholder: "Service-area map or illustration will be added when available. Do not invent city lists.",
 };

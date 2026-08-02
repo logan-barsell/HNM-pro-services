@@ -5,13 +5,13 @@ import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
 import Toolbar from "@mui/material/Toolbar";
 import NextLink from "next/link";
-import { useSyncExternalStore } from "react";
+import { useState, useSyncExternalStore } from "react";
 import { routes } from "@/content/routes";
 import DesktopNavigation from "@/components/layout/DesktopNavigation";
 import MobileNavigation from "@/components/layout/MobileNavigation";
 import BrandWordmark from "@/components/shared/BrandWordmark";
 import PrimaryCTA from "@/components/shared/PrimaryCTA";
-import { siteHeaderHeights } from "@/theme/layout";
+import { navDesktopChromeSx, siteHeaderHeights } from "@/theme/layout";
 
 const SCROLL_THRESHOLD = 24;
 
@@ -34,8 +34,9 @@ export default function SiteHeader() {
     getScrollY,
     getServerScrollY,
   );
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
-  const transparent = scrollY <= SCROLL_THRESHOLD;
+  const transparent = scrollY <= SCROLL_THRESHOLD && !mobileNavOpen;
   const tone = transparent ? "onDark" : "default";
 
   return (
@@ -50,12 +51,25 @@ export default function SiteHeader() {
         right: 0,
         width: "100%",
         borderRadius: 0,
-        bgcolor: transparent ? "transparent" : "background.default",
+        bgcolor: transparent
+          ? "transparent"
+          : mobileNavOpen
+            ? (theme) =>
+                `color-mix(in srgb, ${theme.palette.background.default} 52%, transparent)`
+            : "background.default",
         borderBottom: "1px solid",
         borderColor: transparent ? "transparent" : "divider",
         color: transparent ? "common.white" : "text.primary",
         boxShadow: "none",
         backgroundImage: "none",
+        ...(mobileNavOpen
+          ? {
+              backdropFilter: "blur(20px) saturate(1.15)",
+              WebkitBackdropFilter: "blur(20px) saturate(1.15)",
+            }
+          : {}),
+        zIndex: (theme) =>
+          mobileNavOpen ? theme.zIndex.modal + 1 : theme.zIndex.appBar,
         transition: (theme) =>
           theme.transitions.create(
             ["background-color", "border-color", "color"],
@@ -96,9 +110,9 @@ export default function SiteHeader() {
           <BrandWordmark compact invert={transparent} />
         </Link>
 
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
-          <DesktopNavigation tone={tone} />
-          <Box sx={{ display: { xs: "none", md: "block" } }}>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
+          <Box sx={navDesktopChromeSx}>
+            <DesktopNavigation tone={tone} />
             <PrimaryCTA
               size="medium"
               sx={
@@ -115,7 +129,7 @@ export default function SiteHeader() {
               }
             />
           </Box>
-          <MobileNavigation tone={tone} />
+          <MobileNavigation tone={tone} onOpenChange={setMobileNavOpen} />
         </Box>
       </Toolbar>
     </AppBar>

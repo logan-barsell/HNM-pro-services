@@ -1,4 +1,5 @@
 import { business } from "@/content/business";
+import { brandAssets } from "@/content/assets";
 import { routes } from "@/content/routes";
 
 /**
@@ -46,7 +47,8 @@ export const serviceDetails = [
     ctaLabel: "Discuss Pet Care Needs",
     ctaHref: routes.consultation,
     imageLabel: "Pet-care service image",
-    imageAlt: "Future photograph representing pet sitting and dog walking care",
+    imageAlt: "Pet sitting and dog walking care",
+    imageSrc: brandAssets.petCare,
     mediaFirst: false,
   },
   {
@@ -76,7 +78,8 @@ export const serviceDetails = [
     ctaLabel: "Discuss Companion Care",
     ctaHref: routes.consultation,
     imageLabel: "Senior companionship service image",
-    imageAlt: "Future photograph representing nonmedical senior companion care",
+    imageAlt: "Nonmedical senior companion care",
+    imageSrc: brandAssets.seniorCare,
     mediaFirst: true,
   },
   {
@@ -104,7 +107,8 @@ export const serviceDetails = [
     ctaLabel: "Discuss Home-Care Needs",
     ctaHref: routes.consultation,
     imageLabel: "House-sitting service image",
-    imageAlt: "Future photograph representing house sitting and home checks",
+    imageAlt: "House sitting and home checks",
+    imageSrc: brandAssets.homeCare,
     mediaFirst: false,
   },
 ];
@@ -124,37 +128,6 @@ export const serviceRegions = {
   },
   mapLabel: "Service area map",
   mapAlt: "Future map illustrating the approved local service area",
-};
-
-export const serviceProcess = {
-  title: "How to get started",
-  supporting:
-    "Every new service relationship begins with a conversation. Submitting a consultation request does not guarantee acceptance or availability.",
-  steps: [
-    {
-      number: "1",
-      title: "Request a Free Consultation",
-      description:
-        "Share basic information about the service, location, timing, and the person, pet, or home involved.",
-    },
-    {
-      number: "2",
-      title: "Discuss Your Needs",
-      description:
-        "HNM will follow up to better understand expectations, routines, and availability.",
-    },
-    {
-      number: "3",
-      title: "Confirm the Service Plan",
-      description:
-        "The responsibilities, timing, communication preferences, and service boundaries are agreed upon before work begins.",
-    },
-    {
-      number: "4",
-      title: "Schedule Service",
-      description: "Once details are confirmed, service dates can be arranged.",
-    },
-  ],
 };
 
 export const servicesFinalCta = {

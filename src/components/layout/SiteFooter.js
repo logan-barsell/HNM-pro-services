@@ -1,5 +1,6 @@
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
+import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { business } from "@/content/business";
@@ -7,9 +8,18 @@ import { footerNavigation } from "@/content/navigation";
 import AppLink from "@/components/shared/AppLink";
 import BrandWordmark from "@/components/shared/BrandWordmark";
 import PrimaryCTA from "@/components/shared/PrimaryCTA";
+import {
+  isApprovedContactValue,
+  toMailtoHref,
+  toTelHref,
+} from "@/utils/contactValues";
 
 export default function SiteFooter() {
   const year = new Date().getFullYear();
+  const telHref = toTelHref(business.phone);
+  const mailHref = toMailtoHref(business.email);
+  const phoneApproved = isApprovedContactValue(business.phone);
+  const emailApproved = isApprovedContactValue(business.email);
 
   return (
     <Box
@@ -88,13 +98,35 @@ export default function SiteFooter() {
               variant="body2"
               sx={{ color: "rgba(255,255,255,0.82)" }}
             >
-              Phone: {business.phone}
+              Phone:{" "}
+              {phoneApproved && telHref ? (
+                <Link
+                  href={telHref}
+                  underline="hover"
+                  sx={{ color: "inherit" }}
+                >
+                  {business.phone}
+                </Link>
+              ) : (
+                business.phone
+              )}
             </Typography>
             <Typography
               variant="body2"
               sx={{ color: "rgba(255,255,255,0.82)" }}
             >
-              Email: {business.email}
+              Email:{" "}
+              {emailApproved && mailHref ? (
+                <Link
+                  href={mailHref}
+                  underline="hover"
+                  sx={{ color: "inherit" }}
+                >
+                  {business.email}
+                </Link>
+              ) : (
+                business.email
+              )}
             </Typography>
             <Typography
               variant="body2"
