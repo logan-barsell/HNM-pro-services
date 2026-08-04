@@ -33,13 +33,27 @@ export default function Hero() {
       return undefined;
     }
 
+    let resumeTimer = 0;
+
     const tryPlay = () => {
-      if (prefersReducedMotion() || !video.paused) {
+      if (prefersReducedMotion()) {
         return;
       }
-      video.play().catch(() => {
-        // Autoplay may still be blocked; poster remains visible.
-      });
+
+      window.clearTimeout(resumeTimer);
+      // Defer until after Chrome restores the media pipeline from a freeze.
+      resumeTimer = window.setTimeout(() => {
+        const attempt = video.play();
+        if (attempt?.catch) {
+          attempt.catch(() => {
+            // Buffer may have been discarded after leaving the app.
+            video.load();
+            video.play().catch(() => {
+              // Autoplay may still be blocked; poster remains visible.
+            });
+          });
+        }
+      }, 150);
     };
 
     const onVisibilityChange = () => {
@@ -48,13 +62,16 @@ export default function Hero() {
       }
     };
 
-    // Mobile browsers pause media when the tab/app is backgrounded.
+    // Mobile browsers pause/freeze media when the tab or app is backgrounded.
     document.addEventListener("visibilitychange", onVisibilityChange);
+    document.addEventListener("resume", tryPlay);
     window.addEventListener("pageshow", tryPlay);
     window.addEventListener("focus", tryPlay);
 
     return () => {
+      window.clearTimeout(resumeTimer);
       document.removeEventListener("visibilitychange", onVisibilityChange);
+      document.removeEventListener("resume", tryPlay);
       window.removeEventListener("pageshow", tryPlay);
       window.removeEventListener("focus", tryPlay);
     };
