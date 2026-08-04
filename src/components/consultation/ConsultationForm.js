@@ -176,27 +176,28 @@ export default function ConsultationForm() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          "Full name": values.fullName.trim(),
-          // Keep `email` so Formspree Reply-To works by default.
-          email: values.email.trim(),
-          Phone: values.phone.trim() || "Not provided",
-          "Service needed": serviceNeededLabel,
-          "Service location or ZIP code": values.location.trim(),
-          "Preferred consultation timeframe": optionLabel(
+          "Full Name": values.fullName.trim(),
+          "Email Address": values.email.trim(),
+          // Formspree special: sets Reply-To to the visitor’s address.
+          _replyto: values.email.trim(),
+          Phone: values.phone.trim() || "Not Provided",
+          "Service Needed": serviceNeededLabel,
+          "Service Location or Zip Code": values.location.trim(),
+          "Preferred Consultation Timeframe": optionLabel(
             consultationTimeframeOptions,
             values.consultationTimeframe,
           ),
-          "When service may be needed": optionLabel(
+          "When Service May Be Needed": optionLabel(
             serviceTimeframeOptions,
             values.serviceTimeframe,
           ),
-          "Needs / details": values.needs.trim(),
-          "How they heard about HNM": optionLabel(
+          "Needs / Details": values.needs.trim(),
+          "How They Heard About HNM": optionLabel(
             referralSourceOptions,
             values.referralSource,
-            "Not provided",
+            "Not Provided",
           ),
-          _subject: `HNM consultation: ${serviceNeededLabel}`,
+          _subject: `HNM Consultation: ${serviceNeededLabel}`,
         }),
       });
 

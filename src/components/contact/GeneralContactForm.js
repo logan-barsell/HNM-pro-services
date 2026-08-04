@@ -115,13 +115,14 @@ export default function GeneralContactForm() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          "Full name": values.fullName.trim(),
-          // Keep `email` so Formspree Reply-To works by default.
-          email: values.email.trim(),
-          Phone: values.phone.trim() || "Not provided",
-          "Inquiry type": inquiryTypeLabel,
+          "Full Name": values.fullName.trim(),
+          "Email Address": values.email.trim(),
+          // Formspree special: sets Reply-To to the visitor’s address.
+          _replyto: values.email.trim(),
+          Phone: values.phone.trim() || "Not Provided",
+          "Inquiry Type": inquiryTypeLabel,
           Message: values.message.trim(),
-          _subject: `HNM contact: ${inquiryTypeLabel}`,
+          _subject: `HNM Contact: ${inquiryTypeLabel}`,
         }),
       });
 
