@@ -231,9 +231,11 @@ export const componentOverrides = {
         "&:hover .MuiOutlinedInput-notchedOutline": {
           borderColor: brandColors.borderStrong,
         },
+        // Keep borderWidth at 1px (never 2) so the fieldset legend can
+        // collapse cleanly on blur — width changes leave a stuck notch on mobile.
         "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
           borderColor: brandColors.darkGreen,
-          borderWidth: 2,
+          borderWidth: 1,
         },
         "&.MuiInputBase-multiline": {
           minHeight: "unset",
@@ -242,6 +244,11 @@ export const componentOverrides = {
       },
       notchedOutline: {
         borderColor: brandColors.border,
+        // Extra legend padding so the floating label isn’t tight to the notch.
+        "& legend > span": {
+          paddingLeft: 8,
+          paddingRight: 8,
+        },
       },
       input: {
         fontFamily: typography.fontFamily,

@@ -36,7 +36,7 @@ export const onGreenFormSx = {
     },
     "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
       borderColor: brandColors.white,
-      borderWidth: 2,
+      borderWidth: 1,
     },
     "&.Mui-error .MuiOutlinedInput-notchedOutline": {
       borderColor: "#F3B8AB",
@@ -175,7 +175,7 @@ export const onCreamFormSx = {
     },
     "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
       borderColor: brandColors.darkGreen,
-      borderWidth: 2,
+      borderWidth: 1,
     },
     "&.Mui-error .MuiOutlinedInput-notchedOutline": {
       borderColor: semanticColors.error,

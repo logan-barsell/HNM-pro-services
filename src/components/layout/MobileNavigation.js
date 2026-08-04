@@ -72,10 +72,7 @@ function MenuToggleIcon({ open }) {
   );
 }
 
-export default function MobileNavigation({
-  tone = "default",
-  onOpenChange,
-}) {
+export default function MobileNavigation({ tone = "default", onOpenChange }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const onDark = tone === "onDark";
@@ -157,7 +154,7 @@ export default function MobileNavigation({
               alignItems: "center",
               justifyContent: "center",
               bgcolor: (theme) =>
-                `color-mix(in srgb, ${theme.palette.background.default} 52%, transparent)`,
+                `color-mix(in srgb, ${theme.palette.background.default} 65%, transparent)`,
               backdropFilter: "blur(20px) saturate(1.15)",
               WebkitBackdropFilter: "blur(20px) saturate(1.15)",
               outline: "none",
