@@ -114,7 +114,7 @@ The root `layout.js` remains a Server Component. Only the provider/registry and 
 
 - `ThemeRegistry` — Emotion cache + theme provider
 - `SiteHeader`, `DesktopNavigation`, `MobileNavigation` — pathname and drawer state
-- `PrimaryCTA`, `AppLink`, `SkipLink`, `BrandWordmark` — navigation/CTA/wordmark helpers
+- `PrimaryCTA`, `AppLink`, `BrandWordmark` — navigation/CTA/wordmark helpers
 
 ## Static Export Configuration
 

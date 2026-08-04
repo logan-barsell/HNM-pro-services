@@ -9,7 +9,6 @@ import SiteHeaderOffset from "@/components/layout/SiteHeaderOffset";
 import ScrollReveal from "@/components/motion/ScrollReveal";
 import ThemeRegistry from "@/components/providers/ThemeRegistry";
 import JsonLd from "@/components/seo/JsonLd";
-import SkipLink from "@/components/shared/SkipLink";
 import { fontVariableClassName } from "@/theme/fonts";
 import { absoluteUrl, defaultOgImage } from "@/utils/metadata";
 import "./globals.css";
@@ -72,7 +71,6 @@ export default function RootLayout({ children }) {
       <body>
         <JsonLd data={buildSiteGraph()} />
         <ThemeRegistry>
-          <SkipLink />
           <Box
             sx={{
               display: "flex",
@@ -86,7 +84,6 @@ export default function RootLayout({ children }) {
             <Box
               component="main"
               id="main-content"
-              tabIndex={-1}
               sx={{ flex: 1 }}
             >
               {children}
