@@ -31,3 +31,13 @@ export function isFormSubmissionEnabled(endpoint) {
     return false;
   }
 }
+
+/** Resolve a select option value to its human-readable label for email payloads. */
+export function optionLabel(options, value, fallback = "") {
+  if (!value) {
+    return fallback;
+  }
+
+  const match = options.find((option) => option.value === value);
+  return match?.label || value;
+}

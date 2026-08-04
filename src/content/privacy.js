@@ -129,7 +129,7 @@ export const privacySections = {
       "Help prevent spam, abuse, or fraudulent submissions",
     ],
     marketingNote:
-      "Required form consent is used only so HNM can contact the visitor about the inquiry. It is not treated as consent for newsletters or promotional campaigns.",
+      "Submitting a Contact or Consultation form is treated as a request for HNM to respond about that inquiry. Form submissions are not treated as signup for newsletters or promotional campaigns.",
   },
   serviceProviders: {
     id: "service-providers",

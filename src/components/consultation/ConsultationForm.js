@@ -3,11 +3,7 @@
 import Alert from "@mui/material/Alert";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Checkbox from "@mui/material/Checkbox";
 import Container from "@mui/material/Container";
-import FormControl from "@mui/material/FormControl";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormHelperText from "@mui/material/FormHelperText";
 import Grid from "@mui/material/Grid";
 import MenuItem from "@mui/material/MenuItem";
 import Stack from "@mui/material/Stack";
@@ -21,7 +17,11 @@ import {
   serviceNeededOptions,
   serviceTimeframeOptions,
 } from "@/content/consultation";
-import { formProvider, isFormSubmissionEnabled } from "@/content/forms";
+import {
+  formProvider,
+  isFormSubmissionEnabled,
+  optionLabel,
+} from "@/content/forms";
 import { routes } from "@/content/routes";
 import AppLink from "@/components/shared/AppLink";
 import ConsultationSuccess from "@/components/consultation/ConsultationSuccess";
@@ -42,7 +42,6 @@ const emptyValues = {
   serviceTimeframe: "",
   needs: "",
   referralSource: "",
-  consent: false,
 };
 
 function validate(values) {
@@ -77,10 +76,6 @@ function validate(values) {
 
   if (!values.needs.trim()) {
     errors.needs = fields.needs.requiredMessage;
-  }
-
-  if (!values.consent) {
-    errors.consent = fields.consent.requiredMessage;
   }
 
   return errors;
@@ -120,7 +115,7 @@ export default function ConsultationForm() {
   const [formMessage, setFormMessage] = useState("");
 
   const statusId = `${formId}-status`;
-  const consentErrorId = `${formId}-consent-error`;
+  const privacyId = `${formId}-privacy`;
   const locationHelperId = `${formId}-location-helper`;
   const consultationHelperId = `${formId}-consultation-helper`;
   const needsHelperId = `${formId}-needs-helper`;
@@ -168,6 +163,11 @@ export default function ConsultationForm() {
     setStatus("submitting");
     setFormMessage("");
 
+    const serviceNeededLabel = optionLabel(
+      serviceNeededOptions,
+      values.serviceNeeded,
+    );
+
     try {
       const response = await fetch(formProvider.consultationEndpoint.trim(), {
         method: "POST",
@@ -176,17 +176,27 @@ export default function ConsultationForm() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          fullName: values.fullName.trim(),
+          "Full name": values.fullName.trim(),
+          // Keep `email` so Formspree Reply-To works by default.
           email: values.email.trim(),
-          phone: values.phone.trim(),
-          serviceNeeded: values.serviceNeeded,
-          location: values.location.trim(),
-          consultationTimeframe: values.consultationTimeframe,
-          serviceTimeframe: values.serviceTimeframe,
-          needs: values.needs.trim(),
-          referralSource: values.referralSource,
-          consent: values.consent,
-          _subject: `HNM consultation: ${values.serviceNeeded}`,
+          Phone: values.phone.trim() || "Not provided",
+          "Service needed": serviceNeededLabel,
+          "Service location or ZIP code": values.location.trim(),
+          "Preferred consultation timeframe": optionLabel(
+            consultationTimeframeOptions,
+            values.consultationTimeframe,
+          ),
+          "When service may be needed": optionLabel(
+            serviceTimeframeOptions,
+            values.serviceTimeframe,
+          ),
+          "Needs / details": values.needs.trim(),
+          "How they heard about HNM": optionLabel(
+            referralSourceOptions,
+            values.referralSource,
+            "Not provided",
+          ),
+          _subject: `HNM consultation: ${serviceNeededLabel}`,
         }),
       });
 
@@ -246,6 +256,7 @@ export default function ConsultationForm() {
               noValidate
               onSubmit={handleSubmit}
               aria-label="Consultation request form"
+              aria-describedby={privacyId}
               sx={onCreamFormSx}
             >
               <Stack spacing={4}>
@@ -462,47 +473,24 @@ export default function ConsultationForm() {
                       </MenuItem>
                     ))}
                   </TextField>
-
-                  <FormControl error={Boolean(errors.consent)} required>
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          name={fields.consent.name}
-                          checked={values.consent}
-                          onChange={(event) =>
-                            updateField("consent", event.target.checked)
-                          }
-                          disabled={isSubmitting}
-                          slotProps={{
-                            input: {
-                              "aria-describedby": errors.consent
-                                ? consentErrorId
-                                : undefined,
-                            },
-                          }}
-                        />
-                      }
-                      label={
-                        <Typography variant="body2" component="span">
-                          {fields.consent.label}{" "}
-                          <AppLink
-                            href={routes.privacy}
-                            underline="hover"
-                            sx={{ fontWeight: 600, color: "primary.dark" }}
-                          >
-                            Privacy information
-                          </AppLink>
-                          .
-                        </Typography>
-                      }
-                    />
-                    {errors.consent ? (
-                      <FormHelperText id={consentErrorId}>
-                        {errors.consent}
-                      </FormHelperText>
-                    ) : null}
-                  </FormControl>
                 </FieldGroup>
+
+                <Typography
+                  id={privacyId}
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{ lineHeight: 1.65 }}
+                >
+                  {consultationFormCopy.privacyNotice}{" "}
+                  <AppLink
+                    href={routes.privacy}
+                    underline="hover"
+                    sx={{ fontWeight: 600, color: "primary.dark" }}
+                  >
+                    {consultationFormCopy.privacyLinkLabel}
+                  </AppLink>
+                  .
+                </Typography>
 
                 <Box id={statusId} aria-live="polite">
                   {formMessage && status === "error" ? (

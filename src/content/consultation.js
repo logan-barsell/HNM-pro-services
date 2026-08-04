@@ -88,6 +88,9 @@ export const consultationFormCopy = {
   errorMessage:
     "I couldn’t send your request just now. Please try again, or reach me directly using the information below.",
   invalidMessage: "Please correct the highlighted fields and try again.",
+  privacyNotice:
+    "By submitting this form, you agree that HNM Professional Services may use the information provided to respond to your consultation request.",
+  privacyLinkLabel: "Privacy information",
   groups: {
     contact: "Contact Information",
     service: "Service Details",
@@ -147,17 +150,11 @@ export const consultationFormCopy = {
       name: "referralSource",
       label: "How did you hear about me? (optional)",
     },
-    consent: {
-      name: "consent",
-      label:
-        "I agree that HNM Professional Services may use the information provided to contact me about this inquiry.",
-      requiredMessage: "You must agree to be contacted before submitting.",
-    },
   },
 };
 
 export const consultationSuccess = {
-  title: "Request received",
+  title: "Request received.",
   message:
     "Thank you for reaching out. I’ve received your request, and I’ll be in touch to discuss your needs and arrange a consultation.",
   disclaimer:

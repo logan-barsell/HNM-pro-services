@@ -142,8 +142,8 @@ Workflow file: [`.github/workflows/deploy.yml`](../.github/workflows/deploy.yml)
 
 Forms already JSON-POST fields such as:
 
-- Contact: `fullName`, `email`, `phone`, `inquiryType`, `message`, `consent`, `_subject`
-- Consultation: `fullName`, `email`, `phone`, `serviceNeeded`, `location`, `consultationTimeframe`, `serviceTimeframe`, `needs`, `referralSource`, `consent`, `_subject`
+- Contact: `Full name`, `email`, `Phone`, `Inquiry type`, `Message`, `_subject`
+- Consultation: `Full name`, `email`, `Phone`, `Service needed`, `Service location or ZIP code`, `Preferred consultation timeframe`, `When service may be needed`, `Needs / details`, `How they heard about HNM`, `_subject`
 
 - [ ] In Formspree, confirm custom fields are allowed (or map/rename if the plan requires fixed field names)
 - [ ] Use `_subject` (already sent) so Outlook subjects stay useful (`HNM contact: …`, `HNM consultation: …`)

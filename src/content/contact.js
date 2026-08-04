@@ -57,7 +57,6 @@ export const contactFormCopy = {
   privacyNotice:
     "By submitting this form, you agree that HNM Professional Services may use the information provided to respond to your inquiry. Please do not include sensitive medical, financial, security, or access information.",
   privacyLinkLabel: "Privacy information",
-  consentLabel: "I consent to be contacted about this inquiry",
   inquiryTypes: [
     { value: "general", label: "General question" },
     { value: "existing-client", label: "Existing client" },
@@ -90,10 +89,6 @@ export const contactFormCopy = {
       name: "message",
       label: "Message",
       requiredMessage: "Please enter a message.",
-    },
-    consent: {
-      name: "consent",
-      requiredMessage: "Please confirm you consent to be contacted.",
     },
   },
 };
