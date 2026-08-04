@@ -3,16 +3,16 @@ import { routes } from "@/content/routes";
 
 /**
  * Consultation page content and form options.
- * Submitting a request starts a conversation — it does not confirm an appointment.
+ * Voice: first person (Holly). Submitting starts a conversation — not a booking.
  */
 
 export const consultationHero = {
   eyebrow: "Free Consultation",
   heading: "Request a Free Consultation",
   supporting:
-    "Tell HNM a little about the support you are looking for, where service may be needed, and your preferred timing. Submitting this form starts a conversation and does not create a confirmed appointment or guarantee availability.",
+    "Tell me a little about the support you’re looking for, where you’d need help, and your preferred timing. Submitting this form starts a conversation—it doesn’t create a confirmed appointment or guarantee availability.",
   secondary:
-    "HNM will review the information and follow up to discuss the request, service expectations, and next steps.",
+    "I’ll review what you share and follow up to talk through the request, expectations, and next steps.",
 };
 
 export const consultationProcess = {
@@ -28,25 +28,18 @@ export const consultationProcess = {
     },
     {
       number: "02",
-      title: "HNM Reviews the Details",
+      title: "I Review the Details",
       description:
-        "The request will be reviewed for service fit, location, scheduling, and any questions that need clarification.",
+        "I’ll look over your request for service fit, location, scheduling, and any questions that need clarifying.",
     },
     {
       number: "03",
-      title: "Discuss the Consultation and Next Steps",
+      title: "We Talk About Next Steps",
       description:
-        "HNM will follow up using your preferred contact method to discuss the request and arrange a consultation when appropriate.",
+        "I’ll follow up to discuss the request and arrange a consultation when it makes sense.",
     },
   ],
 };
-
-export const contactMethodOptions = [
-  { value: "phone", label: "Phone call" },
-  { value: "text", label: "Text message" },
-  { value: "email", label: "Email" },
-  { value: "no-preference", label: "No preference" },
-];
 
 export const serviceNeededOptions = [
   { value: "pet-sitting", label: "Pet Sitting & Dog Walking" },
@@ -84,20 +77,20 @@ export const referralSourceOptions = [
 ];
 
 export const consultationFormCopy = {
-  title: "Consultation request",
+  title: "Consultation Request",
   supporting:
-    "Share enough detail for HNM to understand your inquiry. Fields marked as required help with a thoughtful follow-up.",
+    "Share enough so I can understand your situation. Required fields help me follow up thoughtfully.",
   submitLabel: "Request My Free Consultation",
   submittingLabel: "Sending request…",
   inactiveNotice:
     "Online consultation requests are not connected yet. The form and validation are ready; a hosted form provider will be configured before launch. Until then, please use the phone or email options below, or visit the Contact page.",
   errorMessage:
-    "We could not send your request. Please try again, or contact HNM directly using the information below.",
+    "I couldn’t send your request just now. Please try again, or reach me directly using the information below.",
   invalidMessage: "Please correct the highlighted fields and try again.",
   groups: {
-    contact: "Contact information",
-    service: "Service details",
-    additional: "Additional information",
+    contact: "Contact Information",
+    service: "Service Details",
+    additional: "Additional Information",
   },
   fields: {
     fullName: {
@@ -113,13 +106,7 @@ export const consultationFormCopy = {
     },
     phone: {
       name: "phone",
-      label: "Phone number",
-      requiredMessage: "Enter your phone number.",
-    },
-    preferredContact: {
-      name: "preferredContact",
-      label: "Preferred contact method",
-      requiredMessage: "Select a preferred contact method.",
+      label: "Phone number (optional)",
     },
     serviceNeeded: {
       name: "serviceNeeded",
@@ -130,14 +117,14 @@ export const consultationFormCopy = {
       name: "location",
       label: "Service location or ZIP code",
       helperText:
-        "This helps HNM determine whether the location may be within the current service area.",
+        "This helps me know whether the location may be within my current service area.",
       requiredMessage: "Enter the ZIP code or general service location.",
     },
     consultationTimeframe: {
       name: "consultationTimeframe",
       label: "Preferred consultation timeframe",
       helperText:
-        "This is when you would like to talk—not a confirmed appointment time.",
+        "This is when you’d like to talk—not a confirmed appointment time.",
       requiredMessage: "Select a preferred consultation timeframe.",
     },
     serviceTimeframe: {
@@ -147,17 +134,17 @@ export const consultationFormCopy = {
     },
     needs: {
       name: "needs",
-      label: "Tell us a little about what you need",
+      label: "Tell me a little about what you need",
       helperText:
-        "Please share general information about the service, schedule, routines, or questions you would like to discuss.",
+        "Share general information about the service, schedule, routines, or questions you’d like to discuss.",
       sensitiveNotice:
         "Please do not include medical records, financial information, passwords, alarm codes, entry codes, or other sensitive access details.",
-      requiredMessage: "Tell us briefly what kind of support you need.",
+      requiredMessage: "Tell me briefly what kind of support you need.",
       maxLength: 2000,
     },
     referralSource: {
       name: "referralSource",
-      label: "How did you hear about HNM? (optional)",
+      label: "How did you hear about me? (optional)",
     },
     consent: {
       name: "consent",
@@ -168,19 +155,10 @@ export const consultationFormCopy = {
   },
 };
 
-export const consultationPrivacy = {
-  title: "Privacy and sensitive information",
-  body: "Please provide only the information needed for HNM to respond to your inquiry. Do not include medical records, financial information, passwords, security codes, home-entry details, or other highly sensitive information.",
-  statement:
-    "The information submitted will be used to review and respond to your consultation request. See the Privacy page for more information.",
-  linkLabel: "Privacy page",
-  href: routes.privacy,
-};
-
 export const consultationSuccess = {
   title: "Request received",
   message:
-    "Thank you for contacting HNM Professional Services. Your request has been received, and we’ll be in touch to discuss your needs and arrange a consultation.",
+    "Thank you for reaching out. I’ve received your request, and I’ll be in touch to discuss your needs and arrange a consultation.",
   disclaimer:
     "Submitting this request does not confirm a consultation appointment or guarantee service availability.",
   primaryCta: {
@@ -194,11 +172,11 @@ export const consultationSuccess = {
 };
 
 export const alternativeContact = {
-  title: "Prefer to contact HNM directly?",
+  title: "Prefer to call or email?",
   supporting:
-    "For general questions or existing-client communication, use the Contact page. New service requests are best submitted through the consultation form so HNM has the information needed to follow up.",
-  callLabel: "Call HNM",
-  emailLabel: "Email HNM",
+    "For general questions or existing-client communication, use the Contact page. New service requests are best submitted through the consultation form so I have the details I need to follow up well.",
+  callLabel: "Call Holly",
+  emailLabel: "Email Holly",
   contactPageLabel: "General Contact",
   contactHref: routes.contact,
   phoneUnavailable:
@@ -208,7 +186,7 @@ export const alternativeContact = {
 };
 
 export const consultationSeoDescription =
-  "Request a free consultation with HNM Professional Services to discuss pet care, nonmedical senior companionship, house sitting, or home-check needs.";
+  "Request a free consultation with Holly at HNM Professional Services to discuss pet care, nonmedical senior companionship, house sitting, or home-check needs.";
 
 export const consultationBusiness = {
   phone: business.phone,

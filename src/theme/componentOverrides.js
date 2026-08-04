@@ -15,10 +15,18 @@ export const componentOverrides = {
         backgroundColor: brandColors.cream,
         color: brandColors.darkText,
       },
-      "a:focus-visible, button:focus-visible, [tabindex]:focus-visible, .MuiButtonBase-root:focus-visible, .MuiInputBase-root.Mui-focused":
+      "a:focus-visible, button:focus-visible, [tabindex]:focus-visible, .MuiButtonBase-root:focus-visible":
         {
           outline: `2px solid ${brandColors.focusRing}`,
           outlineOffset: "2px",
+        },
+      /*
+       * Outlined inputs use the notched fieldset for focus — a rectangular
+       * outline would cut through the floating label (no notch gap).
+       */
+      ".MuiOutlinedInput-root.Mui-focused, .MuiOutlinedInput-root:focus-within":
+        {
+          outline: "none",
         },
       "::selection": {
         backgroundColor: brandColors.greenMuted,
@@ -178,11 +186,37 @@ export const componentOverrides = {
   MuiFormLabel: {
     styleOverrides: {
       root: {
-        ...typography.body2,
+        fontFamily: typography.fontFamily,
         fontWeight: 600,
+        fontSize: "0.925rem",
+        lineHeight: 1.4,
         color: brandColors.darkText,
         "&.Mui-focused": {
           color: brandColors.darkGreen,
+        },
+      },
+    },
+  },
+  MuiInputLabel: {
+    styleOverrides: {
+      root: {
+        fontFamily: typography.fontFamily,
+        fontWeight: 500,
+        fontSize: "1rem",
+        lineHeight: "1.25em",
+        color: brandColors.mutedText,
+        "&.Mui-focused": {
+          color: brandColors.darkGreen,
+        },
+        "&.Mui-error": {
+          color: semanticColors.error,
+        },
+      },
+      outlined: {
+        // Vertically centers the idle label in a 56px outlined field
+        transform: "translate(14px, 16px) scale(1)",
+        "&.MuiInputLabel-shrink": {
+          transform: "translate(14px, -9px) scale(0.75)",
         },
       },
     },
@@ -192,6 +226,7 @@ export const componentOverrides = {
       root: {
         borderRadius: brandRadii.input,
         backgroundColor: brandColors.white,
+        minHeight: 56,
         "&:hover .MuiOutlinedInput-notchedOutline": {
           borderColor: brandColors.borderStrong,
         },
@@ -199,12 +234,36 @@ export const componentOverrides = {
           borderColor: brandColors.darkGreen,
           borderWidth: 2,
         },
+        "&.MuiInputBase-multiline": {
+          minHeight: "unset",
+          padding: 0,
+        },
       },
       notchedOutline: {
         borderColor: brandColors.border,
       },
       input: {
         fontFamily: typography.fontFamily,
+        fontSize: "1rem",
+        lineHeight: 1.5,
+        padding: "16.5px 14px",
+        height: "auto",
+        boxSizing: "border-box",
+      },
+      inputMultiline: {
+        padding: "16.5px 14px",
+      },
+      inputSizeSmall: {
+        padding: "10px 12px",
+      },
+    },
+  },
+  MuiSelect: {
+    styleOverrides: {
+      select: {
+        minHeight: "1.5em",
+        display: "flex",
+        alignItems: "center",
       },
     },
   },
@@ -212,6 +271,7 @@ export const componentOverrides = {
     defaultProps: {
       variant: "outlined",
       fullWidth: true,
+      size: "medium",
     },
   },
   MuiListItemButton: {

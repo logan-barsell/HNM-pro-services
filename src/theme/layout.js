@@ -11,7 +11,7 @@ export const siteHeaderHeights = {
  * Viewport width where desktop nav collapses to the mobile menu.
  * Mirrored in theme.breakpoints.values.nav.
  */
-export const navCollapseWidth = 980;
+export const navCollapseWidth = 1100;
 
 /** Fade duration; incoming chrome waits this long so the other can finish first. */
 const NAV_FADE_MS = 220;

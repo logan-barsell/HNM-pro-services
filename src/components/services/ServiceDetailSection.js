@@ -10,6 +10,7 @@ import MediaPlaceholder from "@/components/home/MediaPlaceholder";
 import ServiceBoundaryNote from "@/components/services/ServiceBoundaryNote";
 import PrimaryCTA from "@/components/shared/PrimaryCTA";
 import { brandRadii } from "@/theme/brandTokens";
+import { siteHeaderHeights } from "@/theme/layout";
 
 export default function ServiceDetailSection({
   id,
@@ -224,6 +225,10 @@ export default function ServiceDetailSection({
         py: { xs: 7, md: 10 },
         bgcolor: isGreen ? "primary.dark" : "background.default",
         color: isGreen ? "common.white" : "inherit",
+        scrollMarginTop: {
+          xs: `${siteHeaderHeights.xs + 12}px`,
+          md: `${siteHeaderHeights.md + 12}px`,
+        },
       }}
     >
       <Container maxWidth="lg">

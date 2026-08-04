@@ -7,7 +7,7 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import NextLink from "next/link";
 import { homeHero } from "@/content/home";
-import FadeIn from "@/components/home/FadeIn";
+import FadeIn from "@/components/shared/FadeIn";
 import PrimaryCTA from "@/components/shared/PrimaryCTA";
 import {
   homeHeroPaddingTopSx,

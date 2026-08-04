@@ -8,13 +8,12 @@ import ReviewsPreview from "@/components/home/ReviewsPreview";
 import ServiceArea from "@/components/home/ServiceArea";
 import WhyChoose from "@/components/home/WhyChoose";
 import { routes } from "@/content/routes";
+import { pageSeo } from "@/content/seo";
 import { createPageMetadata } from "@/utils/metadata";
 
 export const metadata = createPageMetadata({
-  title:
-    "HNM Professional Services | Compassionate Care for People, Pets & Homes",
-  description:
-    "HNM Professional Services offers compassionate, dependable support for seniors, pets, and homes. Request a free consultation to discuss the care you need.",
+  title: pageSeo[routes.home].title,
+  description: pageSeo[routes.home].description,
   path: routes.home,
   absoluteTitle: true,
 });

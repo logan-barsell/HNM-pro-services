@@ -6,16 +6,19 @@
  */
 export const business = {
   name: "HNM Professional Services",
+  ownerFirstName: "Holly",
+  ownerName: "Holly Abbott",
   tagline: "Supporting People, Cherishing Pets.",
   description:
-    "HNM Professional Services provides compassionate local support for people, pets, and homes.",
-  shortDescription: "Professional local support for people, pets, and homes.",
+    "Personal support for seniors, pets, and homes across the East Valley—thoughtful, dependable care from someone you can talk to.",
+  shortDescription:
+    "Personal support for seniors, pets, and homes across the East Valley.",
   // Replace with the production domain before launch.
   siteUrl: "https://www.example.com",
-  phone: "(925) 640-7095",
+  phone: "(623) 225-0228",
   email: "holly@hnmproservices.com",
-  serviceRegion: "[APPROVED SERVICE REGION]",
-  businessHours: "[BUSINESS HOURS]",
+  serviceRegion:
+    "Scottsdale, Phoenix, Tempe, Chandler, Mesa, and Gilbert, Arizona",
 };
 
 export const services = [
@@ -23,18 +26,18 @@ export const services = [
     id: "pet-sitting",
     name: "Pet Sitting & Dog Walking",
     summary:
-      "In-home pet care and walking support. Final specialty positioning requires client approval.",
+      "Walks, visits, and everyday pet care so your pets stay comfortable while you’re away.",
   },
   {
     id: "companion-care",
     name: "Companion Care for Seniors",
     summary:
-      "Nonmedical companionship and everyday support. Does not include medical or nursing care.",
+      "Friendly, nonmedical companionship and everyday support for seniors.",
   },
   {
     id: "house-sitting",
     name: "House Sitting & Home Checks",
     summary:
-      "Nontechnical home monitoring and care while clients are away. Final visit details require client approval.",
+      "Home checks and house sitting so you can travel with a little more peace of mind.",
   },
 ];

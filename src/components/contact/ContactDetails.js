@@ -2,7 +2,6 @@ import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import PhoneOutlinedIcon from "@mui/icons-material/PhoneOutlined";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { contactBusiness, contactInfo } from "@/content/contact";
@@ -14,34 +13,9 @@ import {
   toTelHref,
 } from "@/utils/contactValues";
 
-function DetailBlock({ label, children }) {
-  return (
-    <Box
-      sx={{
-        height: "100%",
-        p: { xs: 2.5, md: 3 },
-        borderRadius: `${brandRadii.card}px`,
-        bgcolor: "secondary.main",
-        border: "1px solid",
-        borderColor: "divider",
-      }}
-    >
-      <Typography
-        variant="overline"
-        component="h3"
-        sx={{ color: "primary.dark", mb: 1, display: "block" }}
-      >
-        {label}
-      </Typography>
-      {children}
-    </Box>
-  );
-}
-
 export default function ContactDetails() {
   const phoneApproved = isApprovedContactValue(contactBusiness.phone);
   const emailApproved = isApprovedContactValue(contactBusiness.email);
-  const hoursApproved = isApprovedContactValue(contactBusiness.businessHours);
   const regionApproved = isApprovedContactValue(contactBusiness.serviceRegion);
   const telHref = toTelHref(contactBusiness.phone);
   const mailHref = toMailtoHref(contactBusiness.email);
@@ -99,33 +73,32 @@ export default function ContactDetails() {
           )}
         </Stack>
 
-        <Grid container spacing={2.5}>
-          <Grid size={{ xs: 12, sm: 6 }}>
-            <DetailBlock label={contactInfo.hours.label}>
-              <Typography
-                variant="body2"
-                color={hoursApproved ? "text.primary" : "text.secondary"}
-              >
-                {hoursApproved
-                  ? contactBusiness.businessHours
-                  : contactInfo.hours.unavailable}
-              </Typography>
-            </DetailBlock>
-          </Grid>
-
-          <Grid size={{ xs: 12, sm: 6 }}>
-            <DetailBlock label={contactInfo.region.label}>
-              <Typography
-                variant="body2"
-                color={regionApproved ? "text.primary" : "text.secondary"}
-              >
-                {regionApproved
-                  ? contactBusiness.serviceRegion
-                  : contactInfo.region.unavailable}
-              </Typography>
-            </DetailBlock>
-          </Grid>
-        </Grid>
+        <Box
+          sx={{
+            p: { xs: 2.5, md: 3 },
+            maxWidth: "36rem",
+            borderRadius: `${brandRadii.card}px`,
+            bgcolor: "secondary.main",
+            border: "1px solid",
+            borderColor: "divider",
+          }}
+        >
+          <Typography
+            variant="overline"
+            component="h3"
+            sx={{ color: "primary.dark", mb: 1, display: "block" }}
+          >
+            {contactInfo.region.label}
+          </Typography>
+          <Typography
+            variant="body2"
+            color={regionApproved ? "text.primary" : "text.secondary"}
+          >
+            {regionApproved
+              ? contactBusiness.serviceRegion
+              : contactInfo.region.unavailable}
+          </Typography>
+        </Box>
       </Container>
     </Box>
   );

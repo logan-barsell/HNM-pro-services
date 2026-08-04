@@ -3,14 +3,14 @@ import { routes } from "@/content/routes";
 
 /**
  * Contact page content.
- * Do not invent phone, email, hours, service region, or response-time promises.
+ * Voice: first person (Holly). Do not invent response-time promises.
  */
 
 export const contactHero = {
-  eyebrow: "Contact HNM",
+  eyebrow: "Get in Touch",
   heading: "Have a question? Let’s talk.",
   supporting:
-    "Use this page for general questions, existing-client communication, or help determining the best next step. If you are interested in beginning a new service, please start with the free consultation request.",
+    "Questions, existing-client notes, or not sure where to start? Message me here. If you’re ready to begin a new service, the free consultation form is the best place to share the details.",
   primaryCta: {
     label: "Request a Free Consultation",
     href: routes.consultation,
@@ -24,37 +24,33 @@ export const contactHero = {
 export const contactInfo = {
   title: "Contact Information",
   supporting:
-    "Reach HNM by phone or email, or send a message using the form below.",
+    "Reach me by phone or email, or send a message using the form below.",
   phone: {
     label: "Phone",
-    actionLabel: "Call HNM",
+    actionLabel: "Call Holly",
     unavailable:
       "A public phone number will be added once the business finalizes it.",
   },
   email: {
     label: "Email",
-    actionLabel: "Email HNM",
+    actionLabel: "Email Holly",
     unavailable:
       "A public email address will be added once the business finalizes it.",
   },
-  hours: {
-    label: "Business hours",
-    unavailable: "Business hours will be added once finalized.",
-  },
   region: {
-    label: "Service region",
+    label: "Service Regions",
     unavailable:
       "The approved service region will be listed here once finalized.",
   },
 };
 
 export const contactFormCopy = {
-  title: "Send a general message",
+  title: "Send a General Message",
   supporting:
     "Use this short form for general questions or existing-client communication. New service requests should use the free consultation form instead.",
   submitLabel: "Send Message",
   successMessage:
-    "Thank you for contacting HNM Professional Services. Your message has been received, and we’ll follow up using the contact information you provided.",
+    "Thank you for reaching out. I’ve received your message, and I’ll follow up using the contact information you provided.",
   inactiveNotice:
     "Online message delivery is not connected yet. Form fields and validation are ready; a hosted form provider will be configured before launch. Until then, please use the phone or email above, or request a free consultation.",
   privacyNotice:
@@ -101,43 +97,34 @@ export const contactFormCopy = {
   },
 };
 
-export const hoursAndServiceArea = {
-  title: "Hours and service area",
-  body: "HNM serves clients within an approved local service region. Scheduling and availability vary depending on location, service type, and current commitments.",
-  availabilityNote:
-    "Availability is confirmed during the consultation conversation and depends on current commitments.",
-  unsureLead: "Not sure whether your location is covered?",
-  consultationHref: routes.consultation,
-};
-
 export const responseProcess = {
   title: "What happens after you reach out?",
   supporting:
-    "HNM will follow up as soon as reasonably possible based on current scheduling and availability.",
+    "I’ll follow up as soon as I reasonably can, based on current scheduling and availability.",
   steps: [
     {
       number: "01",
       title: "Your message is received",
-      description:
-        "Your inquiry is collected through the contact method you used.",
+      description: "Your inquiry comes through the contact method you used.",
     },
     {
       number: "02",
-      title: "HNM reviews the inquiry",
+      title: "I review the inquiry",
       description:
-        "The message is reviewed so the follow-up can be thoughtful and relevant.",
+        "I read your message carefully so the follow-up can be thoughtful and relevant.",
     },
     {
       number: "03",
-      title: "HNM follows up",
-      description: "HNM follows up using your preferred contact information.",
+      title: "I follow up",
+      description:
+        "I’ll get back to you using your preferred contact information.",
     },
   ],
 };
 
 export const contactFinalCta = {
   title: "Need help with a person, pet, or home?",
-  body: "Start with a free consultation so HNM can learn about your needs, location, timing, and expectations.",
+  body: "Start with a free consultation so I can learn about your needs, location, timing, and expectations.",
   primaryCta: {
     label: "Request a Free Consultation",
     href: routes.consultation,
@@ -149,13 +136,12 @@ export const contactFinalCta = {
 };
 
 export const contactSeoDescription =
-  "Contact HNM Professional Services with general questions, service-area inquiries, or existing-client needs, or request a free consultation for a new service.";
+  "Get in touch with Holly at HNM Professional Services for general questions, service-area inquiries, or existing-client needs—or request a free consultation for a new service.";
 
 /** Re-export business contact fields for single-source display. */
 export const contactBusiness = {
   phone: business.phone,
   email: business.email,
-  businessHours: business.businessHours,
   serviceRegion: business.serviceRegion,
   name: business.name,
 };

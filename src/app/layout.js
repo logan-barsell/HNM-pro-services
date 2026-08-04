@@ -4,6 +4,7 @@ import { defaultSeo } from "@/content/seo";
 import SiteFooter from "@/components/layout/SiteFooter";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteHeaderOffset from "@/components/layout/SiteHeaderOffset";
+import ScrollReveal from "@/components/motion/ScrollReveal";
 import ThemeRegistry from "@/components/providers/ThemeRegistry";
 import SkipLink from "@/components/shared/SkipLink";
 import { fontVariableClassName } from "@/theme/fonts";
@@ -85,6 +86,7 @@ export default function RootLayout({ children }) {
               sx={{ flex: 1 }}
             >
               {children}
+              <ScrollReveal />
             </Box>
             <SiteFooter />
           </Box>

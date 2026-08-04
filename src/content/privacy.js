@@ -32,7 +32,7 @@ export const privacyHero = {
   heading: "Privacy Notice",
   supporting:
     "This notice explains what information HNM Professional Services may collect through this website, why it is collected, and how visitors can contact HNM with questions or requests.",
-  contactLinkLabel: "Contact HNM",
+  contactLinkLabel: "Get in Touch",
   contactHref: routes.contact,
 };
 
@@ -75,8 +75,7 @@ export const privacySections = {
         items: [
           "Full name",
           "Email address",
-          "Phone number",
-          "Preferred contact method (consultation form)",
+          "Phone number (optional)",
         ],
       },
       {
@@ -114,7 +113,7 @@ export const privacySections = {
     items: [
       "Respond to general inquiries",
       "Review consultation requests",
-      "Determine whether a location may be within the current service region",
+      "Determine whether a location may be within the current service regions",
       "Discuss service needs, timing, and expectations",
       "Communicate with prospective or existing clients about the inquiry",
       "Maintain records of business communications",

@@ -17,7 +17,10 @@ import { contactFormCopy } from "@/content/contact";
 import { formProvider, isFormSubmissionEnabled } from "@/content/forms";
 import { routes } from "@/content/routes";
 import AppLink from "@/components/shared/AppLink";
-import { brandRadii } from "@/theme/brandTokens";
+import {
+  onGreenFormSx,
+  onGreenSubmitButtonSx,
+} from "@/theme/formSurfaces";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -173,22 +176,9 @@ export default function GeneralContactForm() {
           onSubmit={handleSubmit}
           aria-label="General contact form"
           aria-describedby={privacyId}
-          sx={{
-            p: { xs: 2.5, md: 3.5 },
-            border: "1px solid",
-            borderColor: "rgba(255,255,255,0.18)",
-            borderRadius: `${brandRadii.card}px`,
-            bgcolor: "background.default",
-            color: "text.primary",
-          }}
+          sx={onGreenFormSx}
         >
         <Stack spacing={2.5}>
-          {!submissionEnabled ? (
-            <Alert severity="info" role="status">
-              {contactFormCopy.inactiveNotice}
-            </Alert>
-          ) : null}
-
           <TextField
             id={`${formId}-fullName`}
             name={fields.fullName.name}
@@ -294,14 +284,13 @@ export default function GeneralContactForm() {
           <Typography
             id={privacyId}
             variant="body2"
-            color="text.secondary"
-            sx={{ lineHeight: 1.65 }}
+            sx={{ lineHeight: 1.65, color: "rgba(255,255,255,0.82)" }}
           >
             {contactFormCopy.privacyNotice}{" "}
             <AppLink
               href={routes.privacy}
               underline="hover"
-              sx={{ fontWeight: 600, color: "primary.dark" }}
+              sx={{ fontWeight: 600, color: "common.white" }}
             >
               {contactFormCopy.privacyLinkLabel}
             </AppLink>
@@ -333,11 +322,7 @@ export default function GeneralContactForm() {
             color="primary"
             size="large"
             disabled={status === "submitting"}
-            sx={{
-              alignSelf: { xs: "stretch", sm: "flex-start" },
-              minHeight: 48,
-              width: { xs: "100%", sm: "auto" },
-            }}
+            sx={onGreenSubmitButtonSx}
           >
             {status === "submitting" ? "Sending…" : contactFormCopy.submitLabel}
           </Button>

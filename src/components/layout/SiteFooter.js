@@ -132,7 +132,7 @@ export default function SiteFooter() {
               variant="body2"
               sx={{ color: "rgba(255,255,255,0.82)" }}
             >
-              Service region: {business.serviceRegion}
+              Service Regions: {business.serviceRegion}
             </Typography>
           </Stack>
 

@@ -8,11 +8,8 @@ import Container from "@mui/material/Container";
 import FormControl from "@mui/material/FormControl";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormHelperText from "@mui/material/FormHelperText";
-import FormLabel from "@mui/material/FormLabel";
 import Grid from "@mui/material/Grid";
 import MenuItem from "@mui/material/MenuItem";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
@@ -20,7 +17,6 @@ import { useEffect, useId, useRef, useState } from "react";
 import {
   consultationFormCopy,
   consultationTimeframeOptions,
-  contactMethodOptions,
   referralSourceOptions,
   serviceNeededOptions,
   serviceTimeframeOptions,
@@ -28,9 +24,11 @@ import {
 import { formProvider, isFormSubmissionEnabled } from "@/content/forms";
 import { routes } from "@/content/routes";
 import AppLink from "@/components/shared/AppLink";
-import ConsultationPrivacyNotice from "@/components/consultation/ConsultationPrivacyNotice";
 import ConsultationSuccess from "@/components/consultation/ConsultationSuccess";
-import { brandRadii } from "@/theme/brandTokens";
+import {
+  onCreamFormSx,
+  onCreamSubmitButtonSx,
+} from "@/theme/formSurfaces";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -38,7 +36,6 @@ const emptyValues = {
   fullName: "",
   email: "",
   phone: "",
-  preferredContact: "",
   serviceNeeded: "",
   location: "",
   consultationTimeframe: "",
@@ -60,14 +57,6 @@ function validate(values) {
     errors.email = fields.email.requiredMessage;
   } else if (!EMAIL_PATTERN.test(values.email.trim())) {
     errors.email = fields.email.invalidMessage;
-  }
-
-  if (!values.phone.trim()) {
-    errors.phone = fields.phone.requiredMessage;
-  }
-
-  if (!values.preferredContact) {
-    errors.preferredContact = fields.preferredContact.requiredMessage;
   }
 
   if (!values.serviceNeeded) {
@@ -109,6 +98,7 @@ function FieldGroup({ title, children }) {
           float: "none",
           width: "100%",
           padding: 0,
+          color: "text.primary",
         }}
       >
         {title}
@@ -189,7 +179,6 @@ export default function ConsultationForm() {
           fullName: values.fullName.trim(),
           email: values.email.trim(),
           phone: values.phone.trim(),
-          preferredContact: values.preferredContact,
           serviceNeeded: values.serviceNeeded,
           location: values.location.trim(),
           consultationTimeframe: values.consultationTimeframe,
@@ -228,8 +217,7 @@ export default function ConsultationForm() {
       }
       sx={{
         py: { xs: 7, md: 10 },
-        bgcolor: "primary.dark",
-        color: "common.white",
+        bgcolor: "background.default",
       }}
     >
       <Container maxWidth="md">
@@ -241,40 +229,26 @@ export default function ConsultationForm() {
               id="consultation-form-heading"
               variant="h2"
               component="h2"
-              sx={{ mb: 1.5, color: "common.white" }}
+              sx={{ mb: 1.5 }}
             >
               {consultationFormCopy.title}
             </Typography>
             <Typography
               variant="body1"
-              sx={{ mb: 3, maxWidth: "40rem", color: "rgba(255,255,255,0.9)" }}
+              color="text.secondary"
+              sx={{ mb: 3, maxWidth: "40rem" }}
             >
               {consultationFormCopy.supporting}
             </Typography>
-
-            <ConsultationPrivacyNotice />
 
             <Box
               component="form"
               noValidate
               onSubmit={handleSubmit}
               aria-label="Consultation request form"
-              sx={{
-                p: { xs: 2.5, md: 3.5 },
-                border: "1px solid",
-                borderColor: "rgba(255,255,255,0.18)",
-                borderRadius: `${brandRadii.card}px`,
-                bgcolor: "background.default",
-                color: "text.primary",
-              }}
+              sx={onCreamFormSx}
             >
               <Stack spacing={4}>
-                {!submissionEnabled ? (
-                  <Alert severity="info" role="status">
-                    {consultationFormCopy.inactiveNotice}
-                  </Alert>
-                ) : null}
-
                 <FieldGroup title={groups.contact}>
                   <TextField
                     id={`${formId}-fullName`}
@@ -319,44 +293,11 @@ export default function ConsultationForm() {
                         onChange={(event) =>
                           updateField("phone", event.target.value)
                         }
-                        error={Boolean(errors.phone)}
-                        helperText={errors.phone}
-                        required
                         autoComplete="tel"
                         disabled={isSubmitting}
                       />
                     </Grid>
                   </Grid>
-
-                  <FormControl
-                    component="fieldset"
-                    error={Boolean(errors.preferredContact)}
-                    required
-                    disabled={isSubmitting}
-                  >
-                    <FormLabel component="legend">
-                      {fields.preferredContact.label}
-                    </FormLabel>
-                    <RadioGroup
-                      name={fields.preferredContact.name}
-                      value={values.preferredContact}
-                      onChange={(event) =>
-                        updateField("preferredContact", event.target.value)
-                      }
-                    >
-                      {contactMethodOptions.map((option) => (
-                        <FormControlLabel
-                          key={option.value}
-                          value={option.value}
-                          control={<Radio />}
-                          label={option.label}
-                        />
-                      ))}
-                    </RadioGroup>
-                    {errors.preferredContact ? (
-                      <FormHelperText>{errors.preferredContact}</FormHelperText>
-                    ) : null}
-                  </FormControl>
                 </FieldGroup>
 
                 <FieldGroup title={groups.service}>
@@ -491,7 +432,11 @@ export default function ConsultationForm() {
                       id={needsNoticeId}
                       variant="caption"
                       color="text.secondary"
-                      sx={{ display: "block", mt: 1, lineHeight: 1.5 }}
+                      sx={{
+                        display: "block",
+                        mt: 1,
+                        lineHeight: 1.5,
+                      }}
                     >
                       {fields.needs.sensitiveNotice}
                     </Typography>
@@ -583,11 +528,7 @@ export default function ConsultationForm() {
                   size="large"
                   disabled={isSubmitting}
                   aria-busy={isSubmitting}
-                  sx={{
-                    alignSelf: { xs: "stretch", sm: "flex-start" },
-                    minHeight: 48,
-                    width: { xs: "100%", sm: "auto" },
-                  }}
+                  sx={onCreamSubmitButtonSx}
                 >
                   {isSubmitting
                     ? consultationFormCopy.submittingLabel

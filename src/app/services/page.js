@@ -4,12 +4,12 @@ import ServicesFinalCTA from "@/components/services/ServicesFinalCTA";
 import ServicesHero from "@/components/services/ServicesHero";
 import { serviceDetails } from "@/content/servicesPage";
 import { routes } from "@/content/routes";
+import { pageSeo } from "@/content/seo";
 import { createPageMetadata } from "@/utils/metadata";
 
 export const metadata = createPageMetadata({
-  title: "Services",
-  description:
-    "Explore pet sitting, dog walking, nonmedical senior companionship, and house-sitting services from HNM Professional Services.",
+  title: pageSeo[routes.services].title,
+  description: pageSeo[routes.services].description,
   path: routes.services,
 });
 

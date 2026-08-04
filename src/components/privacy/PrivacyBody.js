@@ -236,10 +236,10 @@ export default function PrivacyBody() {
               href={telHref}
               variant="outlined"
               color="primary"
-              aria-label={`Call HNM at ${privacyBusiness.phone}`}
+              aria-label={`Call Holly at ${privacyBusiness.phone}`}
               sx={{ alignSelf: "flex-start", minHeight: 44 }}
             >
-              Call HNM
+              Call Holly
             </Button>
           ) : (
             <Typography variant="body2" color="text.secondary">
@@ -252,10 +252,10 @@ export default function PrivacyBody() {
               href={mailHref}
               variant="outlined"
               color="primary"
-              aria-label={`Email HNM at ${privacyBusiness.email}`}
+              aria-label={`Email Holly at ${privacyBusiness.email}`}
               sx={{ alignSelf: "flex-start", minHeight: 44 }}
             >
-              Email HNM
+              Email Holly
             </Button>
           ) : (
             <Typography variant="body2" color="text.secondary">

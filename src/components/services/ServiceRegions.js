@@ -3,11 +3,15 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
+import Image from "next/image";
 import { serviceRegions } from "@/content/servicesPage";
 import MediaPlaceholder from "@/components/home/MediaPlaceholder";
 import PrimaryCTA from "@/components/shared/PrimaryCTA";
+import { brandRadii } from "@/theme/brandTokens";
 
 export default function ServiceRegions() {
+  const { mapSrc, mapAlt, mapLabel } = serviceRegions;
+
   return (
     <Box
       component="section"
@@ -81,12 +85,33 @@ export default function ServiceRegions() {
             </Stack>
           </Grid>
           <Grid size={{ xs: 12, md: 6 }}>
-            <MediaPlaceholder
-              label={serviceRegions.mapLabel}
-              aria-label={serviceRegions.mapAlt}
-              minHeight={{ xs: 220, md: 320 }}
-              sx={{ bgcolor: "background.default" }}
-            />
+            {mapSrc ? (
+              <Box
+                sx={{
+                  position: "relative",
+                  borderRadius: `${brandRadii.media}px`,
+                  overflow: "hidden",
+                  minHeight: { xs: 220, md: 320 },
+                  aspectRatio: "4 / 3",
+                  bgcolor: "background.default",
+                }}
+              >
+                <Image
+                  src={mapSrc}
+                  alt={mapAlt}
+                  fill
+                  sizes="(max-width: 900px) 100vw, 50vw"
+                  style={{ objectFit: "contain" }}
+                />
+              </Box>
+            ) : (
+              <MediaPlaceholder
+                label={mapLabel || "Service area map"}
+                aria-label={mapAlt}
+                minHeight={{ xs: 220, md: 320 }}
+                sx={{ bgcolor: "background.default" }}
+              />
+            )}
           </Grid>
         </Grid>
       </Container>

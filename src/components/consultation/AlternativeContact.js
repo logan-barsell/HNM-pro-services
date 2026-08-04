@@ -28,8 +28,7 @@ export default function AlternativeContact() {
       aria-labelledby="alternative-contact-heading"
       sx={{
         py: { xs: 7, md: 10 },
-        bgcolor: "primary.dark",
-        color: "common.white",
+        bgcolor: "background.default",
       }}
     >
       <Container maxWidth="md">
@@ -37,16 +36,16 @@ export default function AlternativeContact() {
           id="alternative-contact-heading"
           variant="h2"
           component="h2"
-          sx={{ mb: 1.5, color: "common.white" }}
+          sx={{ mb: 1.5 }}
         >
           {alternativeContact.title}
         </Typography>
         <Typography
           variant="body1"
+          color="text.secondary"
           sx={{
             mb: 3.5,
             maxWidth: "40rem",
-            color: "rgba(255,255,255,0.9)",
           }}
         >
           {alternativeContact.supporting}
@@ -59,10 +58,10 @@ export default function AlternativeContact() {
               icon={PhoneOutlinedIcon}
               label={alternativeContact.callLabel}
               value={consultationBusiness.phone}
-              tone="green"
+              tone="cream"
             />
           ) : (
-            <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.75)" }}>
+            <Typography variant="body2" color="text.secondary">
               {alternativeContact.phoneUnavailable}
             </Typography>
           )}
@@ -73,24 +72,21 @@ export default function AlternativeContact() {
               icon={EmailOutlinedIcon}
               label={alternativeContact.emailLabel}
               value={consultationBusiness.email}
-              tone="green"
+              tone="cream"
             />
           ) : (
-            <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.75)" }}>
+            <Typography variant="body2" color="text.secondary">
               {alternativeContact.emailUnavailable}
             </Typography>
           )}
         </Stack>
 
-        <Typography
-          variant="body2"
-          sx={{ mt: 3.5, color: "rgba(255,255,255,0.85)" }}
-        >
+        <Typography variant="body2" color="text.secondary" sx={{ mt: 3.5 }}>
           Or visit the{" "}
           <AppLink
             href={alternativeContact.contactHref}
             underline="hover"
-            sx={{ fontWeight: 600, color: "common.white" }}
+            sx={{ fontWeight: 600, color: "primary.dark" }}
           >
             Contact page
           </AppLink>{" "}

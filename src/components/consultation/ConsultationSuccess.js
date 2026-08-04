@@ -15,11 +15,10 @@ export default function ConsultationSuccess({ headingRef }) {
       sx={{
         p: { xs: 3, md: 4 },
         borderRadius: `${brandRadii.card}px`,
-        bgcolor: "background.default",
+        bgcolor: "transparent",
         border: "1px solid",
-        borderColor: "rgba(255,255,255,0.18)",
+        borderColor: "divider",
         textAlign: "center",
-        color: "text.primary",
       }}
     >
       <Typography
@@ -42,14 +41,22 @@ export default function ConsultationSuccess({ headingRef }) {
       <Typography
         variant="body1"
         color="text.secondary"
-        sx={{ mb: 2, maxWidth: "34rem", mx: "auto" }}
+        sx={{
+          mb: 2,
+          maxWidth: "34rem",
+          mx: "auto",
+        }}
       >
         {consultationSuccess.message}
       </Typography>
       <Typography
         variant="body2"
         color="text.secondary"
-        sx={{ mb: 4, maxWidth: "32rem", mx: "auto" }}
+        sx={{
+          mb: 4,
+          maxWidth: "32rem",
+          mx: "auto",
+        }}
       >
         {consultationSuccess.disclaimer}
       </Typography>

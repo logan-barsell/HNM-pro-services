@@ -2,14 +2,14 @@ import { routes } from "@/content/routes";
 
 /**
  * Reviews page content.
- * Do not invent testimonials, ratings, names, or platform profile URLs.
+ * Voice: first person (Holly). Do not invent testimonials or platform URLs.
  */
 
 export const reviewsHero = {
   eyebrow: "Client Reviews",
-  heading: "Trust is built through every experience.",
+  heading: "Trust is built one visit at a time.",
   supporting:
-    "HNM Professional Services is committed to providing thoughtful, dependable support for people, pets, and homes. Approved client feedback will be shared here to help prospective clients understand what working with HNM is like.",
+    "I care about doing right by the people, pets, and homes I’m invited into. As approved client feedback comes in, I’ll share it here so you can get a clearer sense of what working together is like.",
   primaryCta: {
     label: "Request a Free Consultation",
     href: routes.consultation,
@@ -39,21 +39,21 @@ export const reviewsHero = {
 export const testimonials = [];
 
 export const clientsValue = {
-  title: "What HNM Aims to Provide",
+  title: "What You Can Expect From Me",
   supporting:
-    "These principles guide how HNM approaches every service relationship. They are commitments to the work—not claims that every client has already left a public review.",
+    "These are the standards I hold myself to in every service relationship. They’re commitments to the work—not claims that every client has already left a public review.",
   items: [
     {
       id: "communication",
       title: "Dependable communication",
       description:
-        "Clients should know what to expect, how updates will be shared, and who to contact with questions.",
+        "You should know what to expect, how updates will be shared, and how to reach me with questions.",
     },
     {
       id: "respect",
       title: "Respect for routines and preferences",
       description:
-        "Each household has its own rhythms. HNM aims to honor those preferences and boundaries.",
+        "Each household has its own rhythms. I aim to honor those preferences and boundaries.",
     },
     {
       id: "compassion",
@@ -71,7 +71,7 @@ export const clientsValue = {
       id: "updates",
       title: "Thoughtful updates when agreed",
       description:
-        "When updates are part of the agreed plan, they should be clear, timely, and useful.",
+        "When updates are part of our plan, they should be clear, timely, and useful.",
     },
   ],
 };
@@ -117,13 +117,13 @@ export function hasValidExternalUrl(url) {
 }
 
 export const reviewSubmission = {
-  title: "Already worked with HNM?",
-  body: "Feedback helps small local businesses grow and gives future clients a clearer idea of what to expect. Once the official review profiles are available, clients will be able to share their experience through the appropriate platform.",
+  title: "Already worked with me?",
+  body: "Feedback helps other families know what to expect. Once official review profiles are available, you’ll be able to share your experience through the appropriate platform.",
 };
 
 export const reviewsFinalCta = {
   title: "Ready to discuss the support you need?",
-  body: "Every new client begins with a conversation. Share a little about your needs, location, and timing, and HNM will follow up to discuss the next steps.",
+  body: "Every new client begins with a conversation. Share a little about your needs, location, and timing, and I’ll follow up to talk through next steps.",
   primaryCta: {
     label: "Request a Free Consultation",
     href: routes.consultation,
@@ -136,4 +136,4 @@ export const reviewsFinalCta = {
 
 /** Temporary meta description while no public testimonials are published. */
 export const reviewsSeoDescription =
-  "Learn about the values and client-focused approach behind HNM Professional Services. Approved testimonials and review links will be added as they become available.";
+  "Learn what you can expect from Holly at HNM Professional Services. Approved testimonials and review links will be added as they become available.";

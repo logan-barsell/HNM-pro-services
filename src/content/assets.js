@@ -17,4 +17,5 @@ export const brandAssets = {
   petCare: "/brand/petcare.jpg",
   seniorCare: "/brand/seniorcare.jpg",
   homeCare: "/brand/homecare.png",
+  serviceAreaMap: "/brand/HNM-map.png",
 };

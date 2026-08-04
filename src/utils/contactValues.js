@@ -13,7 +13,7 @@ export function isApprovedContactValue(value) {
     return false;
   }
 
-  // Established project placeholders: [CLIENT PHONE], [BUSINESS HOURS], etc.
+  // Established project placeholders: [CLIENT PHONE], [APPROVED SERVICE REGION], etc.
   if (/^\[[^\]]+\]$/.test(trimmed)) {
     return false;
   }
@@ -27,9 +27,21 @@ export function toTelHref(phone) {
     return null;
   }
 
+  const digits = phone.trim().replace(/\D/g, "");
+  if (digits.length < 7) {
+    return null;
+  }
+
+  // Prefer E.164-style links for US numbers so mobile dialers get a country code.
+  if (digits.length === 10) {
+    return `tel:+1${digits}`;
+  }
+  if (digits.length === 11 && digits.startsWith("1")) {
+    return `tel:+${digits}`;
+  }
+
   const normalized = phone.trim().replace(/[^\d+]/g, "");
-  const digitCount = normalized.replace(/\D/g, "").length;
-  if (!normalized || normalized === "+" || digitCount < 7) {
+  if (!normalized || normalized === "+") {
     return null;
   }
 

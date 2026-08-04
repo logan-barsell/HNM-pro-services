@@ -8,6 +8,7 @@ export default function ConsultationProcess() {
       title={consultationProcess.title}
       supporting={consultationProcess.supporting}
       steps={consultationProcess.steps}
+      tone="green"
     />
   );
 }
