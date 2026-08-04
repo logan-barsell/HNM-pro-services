@@ -56,7 +56,7 @@ export const contactFormCopy = {
     "Online message delivery is not connected yet. Form fields and validation are ready; a hosted form provider will be configured before launch. Until then, please use the phone or email above, or request a free consultation.",
   privacyNotice:
     "By submitting this form, you agree that HNM Professional Services may use the information provided to respond to your inquiry. Please do not include sensitive medical, financial, security, or access information.",
-  privacyLinkLabel: "Privacy information",
+  privacyLinkLabel: "Privacy Information",
   inquiryTypes: [
     { value: "general", label: "General question" },
     { value: "existing-client", label: "Existing client" },
@@ -67,22 +67,22 @@ export const contactFormCopy = {
   fields: {
     fullName: {
       name: "fullName",
-      label: "Full name",
+      label: "Full Name",
       requiredMessage: "Please enter your full name.",
     },
     email: {
       name: "email",
-      label: "Email",
+      label: "Email Address",
       requiredMessage: "Please enter your email address.",
       invalidMessage: "Please enter a valid email address.",
     },
     phone: {
       name: "phone",
-      label: "Phone number (optional)",
+      label: "Phone Number (optional)",
     },
     inquiryType: {
       name: "inquiryType",
-      label: "Inquiry type",
+      label: "Inquiry Type",
       requiredMessage: "Please select an inquiry type.",
     },
     message: {

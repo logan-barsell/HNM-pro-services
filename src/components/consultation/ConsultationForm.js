@@ -180,22 +180,22 @@ export default function ConsultationForm() {
           "Email Address": values.email.trim(),
           // Formspree special: sets Reply-To to the visitor’s address.
           _replyto: values.email.trim(),
-          Phone: values.phone.trim() || "Not Provided",
+          "Phone Number": values.phone.trim() || "Not provided",
           "Service Needed": serviceNeededLabel,
-          "Service Location or Zip Code": values.location.trim(),
-          "Preferred Consultation Timeframe": optionLabel(
+          "Service location or zip code": values.location.trim(),
+          "Preferred consultation timeframe": optionLabel(
             consultationTimeframeOptions,
             values.consultationTimeframe,
           ),
-          "When Service May Be Needed": optionLabel(
+          "When service may be needed": optionLabel(
             serviceTimeframeOptions,
             values.serviceTimeframe,
           ),
-          "Needs / Details": values.needs.trim(),
-          "How They Heard About HNM": optionLabel(
+          "Tell me a little about what you need": values.needs.trim(),
+          "How did you hear about me?": optionLabel(
             referralSourceOptions,
             values.referralSource,
-            "Not Provided",
+            "Not provided",
           ),
           _subject: `HNM Consultation: ${serviceNeededLabel}`,
         }),

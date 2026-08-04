@@ -119,7 +119,7 @@ export default function GeneralContactForm() {
           "Email Address": values.email.trim(),
           // Formspree special: sets Reply-To to the visitor’s address.
           _replyto: values.email.trim(),
-          Phone: values.phone.trim() || "Not Provided",
+          "Phone Number": values.phone.trim() || "Not provided",
           "Inquiry Type": inquiryTypeLabel,
           Message: values.message.trim(),
           _subject: `HNM Contact: ${inquiryTypeLabel}`,

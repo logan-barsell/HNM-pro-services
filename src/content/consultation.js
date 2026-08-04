@@ -90,7 +90,7 @@ export const consultationFormCopy = {
   invalidMessage: "Please correct the highlighted fields and try again.",
   privacyNotice:
     "By submitting this form, you agree that HNM Professional Services may use the information provided to respond to your consultation request.",
-  privacyLinkLabel: "Privacy information",
+  privacyLinkLabel: "Privacy Information",
   groups: {
     contact: "Contact Information",
     service: "Service Details",
@@ -99,27 +99,27 @@ export const consultationFormCopy = {
   fields: {
     fullName: {
       name: "fullName",
-      label: "Full name",
+      label: "Full Name",
       requiredMessage: "Enter your full name.",
     },
     email: {
       name: "email",
-      label: "Email",
+      label: "Email Address",
       requiredMessage: "Enter your email address.",
       invalidMessage: "Enter a valid email address.",
     },
     phone: {
       name: "phone",
-      label: "Phone number (optional)",
+      label: "Phone Number (optional)",
     },
     serviceNeeded: {
       name: "serviceNeeded",
-      label: "Service needed",
+      label: "Service Needed",
       requiredMessage: "Select the service you would like to discuss.",
     },
     location: {
       name: "location",
-      label: "Service location or ZIP code",
+      label: "Service location or zip code",
       helperText:
         "This helps me know whether the location may be within my current service area.",
       requiredMessage: "Enter the ZIP code or general service location.",
