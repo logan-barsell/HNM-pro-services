@@ -13,8 +13,7 @@ export const business = {
     "Personal support for seniors, pets, and homes across the East Valley—thoughtful, dependable care from someone you can talk to.",
   shortDescription:
     "Personal support for seniors, pets, and homes across the East Valley.",
-  // Replace with the production domain before launch.
-  siteUrl: "https://www.example.com",
+  siteUrl: "https://hnmproservices.com",
   phone: "(623) 225-0228",
   email: "holly@hnmproservices.com",
   serviceRegion:

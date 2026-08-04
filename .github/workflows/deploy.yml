@@ -1,0 +1,71 @@
+# Build the Next.js static export and rsync `out/` to the DigitalOcean droplet.
+#
+# GitHub secrets required:
+#   SSH_PRIVATE_KEY  — deploy key authorized on the droplet
+#   HOST             — droplet IP or hostname (e.g. 159.65.97.98)
+#   USERNAME         — SSH user (must be able to write DEPLOY_PATH)
+#   DEPLOY_PATH      — absolute web root (e.g. /var/www/hnmproservices.com/html)
+#
+# Optional secrets (Formspree; leave unset until forms are ready):
+#   NEXT_PUBLIC_CONTACT_FORM_ENDPOINT
+#   NEXT_PUBLIC_CONSULTATION_FORM_ENDPOINT
+
+name: Deploy to DigitalOcean
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Build and Deploy Static Site
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static site
+        run: npm run build
+        env:
+          NEXT_PUBLIC_CONTACT_FORM_ENDPOINT: ${{ secrets.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT }}
+          NEXT_PUBLIC_CONSULTATION_FORM_ENDPOINT: ${{ secrets.NEXT_PUBLIC_CONSULTATION_FORM_ENDPOINT }}
+
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Deploy to server
+        env:
+          HOST: ${{ secrets.HOST }}
+          USERNAME: ${{ secrets.USERNAME }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+        run: |
+          set -euo pipefail
+
+          ssh -o StrictHostKeyChecking=accept-new "${USERNAME}@${HOST}" \
+            "sudo mkdir -p '${DEPLOY_PATH}' && sudo chown -R '${USERNAME}:www-data' '${DEPLOY_PATH}'"
+
+          rsync -avz --delete \
+            --exclude '.DS_Store' \
+            -e "ssh -o StrictHostKeyChecking=accept-new" \
+            out/ "${USERNAME}@${HOST}:${DEPLOY_PATH}/"
+
+          ssh -o StrictHostKeyChecking=accept-new "${USERNAME}@${HOST}" << EOF
+            sudo chown -R www-data:www-data '${DEPLOY_PATH}'
+            sudo chmod -R u=rwX,g=rX,o=rX '${DEPLOY_PATH}'
+            sudo systemctl reload nginx
+            echo "Deployment complete."
+          EOF

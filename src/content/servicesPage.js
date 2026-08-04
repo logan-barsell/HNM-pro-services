@@ -9,7 +9,7 @@ import { routes } from "@/content/routes";
 
 export const servicesHero = {
   eyebrow: "Services",
-  heading: "Support shaped around your household.",
+  heading: "Dependable support for people, pets, and homes.",
   supporting:
     "I offer pet care, nonmedical senior companionship, and house sitting—always starting with a free consultation so we can talk through expectations, scheduling, and details together.",
   primaryCta: {

@@ -98,24 +98,9 @@ export const homeAboutPreview = {
 
 export const homeReviewsPreview = {
   title: "What Clients Are Saying",
-  note: "Approved client testimonials will be added before launch. The cards below are layout placeholders only.",
-  placeholders: [
-    {
-      id: "review-1",
-      quote: "[APPROVED TESTIMONIAL]",
-      attribution: "Client name pending approval",
-    },
-    {
-      id: "review-2",
-      quote: "[APPROVED TESTIMONIAL]",
-      attribution: "Client name pending approval",
-    },
-    {
-      id: "review-3",
-      quote: "[APPROVED TESTIMONIAL]",
-      attribution: "Client name pending approval",
-    },
-  ],
+  supporting: "Recent Google reviews from families I’ve worked with.",
+  emptyNote:
+    "Google reviews will appear here once the Business Profile sync is connected.",
   cta: { label: "View All Reviews", href: routes.reviews },
 };
 
@@ -124,7 +109,7 @@ export const homeServiceArea = {
   body: `I provide local support in ${business.serviceRegion}. Availability may depend on location, scheduling, and the type of help you need—if you’re nearby and not sure, just ask.`,
   mapSrc: brandAssets.serviceAreaMap,
   mapAlt:
-    "Illustrated map of the HNM service area covering Scottsdale, Phoenix, Tempe, Chandler, Mesa, and Gilbert, Arizona",
+    "Illustrated map of the HNM service areaa covering Scottsdale, Phoenix, Tempe, Chandler, Mesa, and Gilbert, Arizona",
 };
 
 export const homeFinalCta = {

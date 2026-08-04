@@ -1,10 +1,11 @@
 import Box from "@mui/material/Box";
+import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import { brandRadii } from "@/theme/brandTokens";
+import { hasValidExternalUrl } from "@/utils/urls";
 
 /**
- * Renders a single approved testimonial.
- * Do not pass invented ratings, names, or quotes.
+ * Renders a single Google review / testimonial in site UI.
  */
 export default function TestimonialCard({
   quote,
@@ -14,11 +15,15 @@ export default function TestimonialCard({
   date,
   sourceUrl,
   rating,
+  tone = "cream",
 }) {
+  const onGreen = tone === "onGreen";
+  const hasSource = hasValidExternalUrl(sourceUrl);
+
   return (
     <Box
       component="blockquote"
-      cite={sourceUrl || undefined}
+      cite={hasSource ? sourceUrl : undefined}
       sx={{
         m: 0,
         height: "100%",
@@ -26,10 +31,11 @@ export default function TestimonialCard({
         flexDirection: "column",
         p: { xs: 3, md: 3.5 },
         borderRadius: `${brandRadii.card}px`,
-        bgcolor: "secondary.main",
+        bgcolor: onGreen ? "background.default" : "secondary.main",
         border: "1px solid",
-        borderColor: "divider",
+        borderColor: onGreen ? "rgba(255,255,255,0.18)" : "divider",
         boxShadow: "none",
+        color: "text.primary",
       }}
     >
       <Typography
@@ -84,6 +90,23 @@ export default function TestimonialCard({
             {[serviceCategory, platform, date].filter(Boolean).join(" · ")}
           </Typography>
         )}
+        {hasSource ? (
+          <Link
+            href={sourceUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            underline="hover"
+            sx={{
+              mt: 1,
+              display: "inline-block",
+              fontWeight: 600,
+              fontSize: "0.85rem",
+              color: "primary.dark",
+            }}
+          >
+            View on Google
+          </Link>
+        ) : null}
       </Box>
     </Box>
   );

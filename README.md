@@ -75,22 +75,25 @@ Open [http://localhost:3000](http://localhost:3000).
 ```bash
 npm run lint
 npm run build
+npm run sync:reviews
 ```
 
 `npm run build` runs the production build and writes the static export to `out/`.
+
+`npm run sync:reviews` pulls Google Place reviews into `src/content/googleReviews.generated.json` (requires `GOOGLE_PLACES_API_KEY` and a Place ID in `src/content/googleReviews.config.js`). A weekly GitHub Action runs the same sync and commits changes so deploys stay hands-off.
 
 `npm start` is provided by Next.js scaffolding but is **not** used for production. This project uses static export; serve the `out/` directory with Nginx or any static file server.
 
 ## Deployment
 
-Intended deployment flow:
+Production flow:
 
-1. Push to GitHub
-2. GitHub Actions builds the static export (`out/`)
-3. Exported files are deployed to the VPS
+1. Push to `main` (or run **Deploy to DigitalOcean** via `workflow_dispatch`)
+2. GitHub Actions builds the static export (`out/`) with Node 24
+3. `rsync` copies `out/` to the droplet web root
 4. Nginx serves the static site
 
-Deployment configuration will be added in a later phase.
+Workflow: [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). Required secrets are documented in that file. See [docs/LAUNCH_CHECKLIST.md](docs/LAUNCH_CHECKLIST.md) for domain, Nginx, and Formspree setup.
 
 ## Documentation
 
@@ -100,6 +103,8 @@ Project documentation lives in `docs/`:
 - [ARCHITECTURE.md](docs/ARCHITECTURE.md) — Technical architecture, routes, MUI integration, and static-export constraints
 - [CONTENT_GUIDELINES.md](docs/CONTENT_GUIDELINES.md) — Voice, CTA language, and copy safety rules
 - [ASSET_GUIDELINES.md](docs/ASSET_GUIDELINES.md) — Logo, image, video, naming, and alt-text standards
+- [GOOGLE_REVIEWS.md](docs/GOOGLE_REVIEWS.md) — Google reviews sync setup, secrets, and next steps
+- [LAUNCH_CHECKLIST.md](docs/LAUNCH_CHECKLIST.md) — Domain, Nginx, GitHub Actions deploy, and Formspree launch checklist
 - [DECISIONS.md](docs/DECISIONS.md) — Architecture Decision Log (ADRs)
 
 ## Contributing and Development Expectations

@@ -2,7 +2,7 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import { testimonials } from "@/content/reviews";
+import { testimonials, reviewsAttribution } from "@/content/reviews";
 import ReviewsEmptyState from "@/components/reviews/ReviewsEmptyState";
 import TestimonialCard from "@/components/reviews/TestimonialCard";
 
@@ -26,13 +26,22 @@ export default function TestimonialsSection() {
         </Typography>
 
         {hasTestimonials ? (
-          <Grid container spacing={3} sx={{ mt: 1 }}>
-            {testimonials.map((item) => (
-              <Grid key={item.id} size={{ xs: 12, md: 6, lg: 4 }}>
-                <TestimonialCard {...item} />
-              </Grid>
-            ))}
-          </Grid>
+          <>
+            <Grid container spacing={3} sx={{ mt: 1 }}>
+              {testimonials.map((item) => (
+                <Grid key={item.id} size={{ xs: 12, md: 6, lg: 4 }}>
+                  <TestimonialCard {...item} />
+                </Grid>
+              ))}
+            </Grid>
+            <Typography
+              variant="caption"
+              color="text.secondary"
+              sx={{ display: "block", mt: 3 }}
+            >
+              {reviewsAttribution}
+            </Typography>
+          </>
         ) : (
           <ReviewsEmptyState />
         )}

@@ -1,15 +1,23 @@
 import { routes } from "@/content/routes";
+import {
+  getGoogleBusinessProfileUrl,
+  getGoogleLeaveReviewUrl,
+  getReviewsPageTestimonials,
+} from "@/content/reviewsData";
+import { hasValidExternalUrl } from "@/utils/urls";
 
 /**
  * Reviews page content.
- * Voice: first person (Holly). Do not invent testimonials or platform URLs.
+ * Voice: first person (Holly). Google reviews sync via npm run sync:reviews.
  */
+
+export { hasValidExternalUrl };
 
 export const reviewsHero = {
   eyebrow: "Client Reviews",
   heading: "Trust is built one visit at a time.",
   supporting:
-    "I care about doing right by the people, pets, and homes I’m invited into. As approved client feedback comes in, I’ll share it here so you can get a clearer sense of what working together is like.",
+    "I care about doing right by the people, pets, and homes I’m invited into. As Google reviews come in, they’re shared here so you can get a clearer sense of what working together is like.",
   primaryCta: {
     label: "Request a Free Consultation",
     href: routes.consultation,
@@ -20,28 +28,13 @@ export const reviewsHero = {
   },
 };
 
-/**
- * Approved testimonials only. Keep this array empty until real reviews are approved.
- * Do not add sample/demo reviews to the production path.
- *
- * Example shape when available:
- * {
- *   id: "t1",
- *   quote: "...",
- *   attribution: "Approved name or initials",
- *   serviceCategory: "Pet Sitting & Dog Walking",
- *   platform: "Google",
- *   date: "2026-01",
- *   sourceUrl: "https://...",
- *   rating: 5, // only when verified and approved
- * }
- */
-export const testimonials = [];
+/** Synced Google reviews (rating ≥ 4), capped for the Reviews page. */
+export const testimonials = getReviewsPageTestimonials();
 
 export const clientsValue = {
   title: "What You Can Expect From Me",
   supporting:
-    "These are the standards I hold myself to in every service relationship. They’re commitments to the work—not claims that every client has already left a public review.",
+    "These are the standards I hold myself to in every service relationship. They’re commitments to the work—not claims about any single review.",
   items: [
     {
       id: "communication",
@@ -77,48 +70,29 @@ export const clientsValue = {
 };
 
 export const reviewPlatforms = {
-  title: "Find HNM on review platforms",
-  temporaryNote:
-    "Google and Yelp profile links will be added once the business listings are finalized.",
+  title: "Find HNM on Google",
+  supporting:
+    "Read public reviews on Google, or leave one if we’ve worked together.",
+  pendingNote:
+    "Google profile links will appear here once the Business Profile Place ID and URLs are configured.",
   google: {
-    label: "Read more reviews on Google",
+    label: "Read reviews on Google",
     unavailableLabel: "Google reviews coming soon",
-    // Set only to the full business-profile URL when approved.
-    url: "",
-  },
-  yelp: {
-    label: "View HNM on Yelp",
-    unavailableLabel: "Yelp profile coming soon",
-    // Set only to the full business-profile URL when approved.
-    url: "",
+    get url() {
+      return getGoogleBusinessProfileUrl();
+    },
   },
 };
 
-/**
- * Empty strings and whitespace are not valid links.
- * Only http(s) profile URLs should render as anchors.
- */
-export function hasValidExternalUrl(url) {
-  if (typeof url !== "string") {
-    return false;
-  }
-
-  const trimmed = url.trim();
-  if (!trimmed) {
-    return false;
-  }
-
-  try {
-    const parsed = new URL(trimmed);
-    return parsed.protocol === "http:" || parsed.protocol === "https:";
-  } catch {
-    return false;
-  }
-}
-
 export const reviewSubmission = {
   title: "Already worked with me?",
-  body: "Feedback helps other families know what to expect. Once official review profiles are available, you’ll be able to share your experience through the appropriate platform.",
+  body: "If we’ve worked together, a Google review helps other families know what to expect. Thank you for taking a moment to share your experience.",
+  pendingBody:
+    "Once the Google leave-a-review link is configured, past clients will be able to share feedback directly from this page.",
+  ctaLabel: "Leave a Google Review",
+  get leaveReviewUrl() {
+    return getGoogleLeaveReviewUrl();
+  },
 };
 
 export const reviewsFinalCta = {
@@ -134,6 +108,8 @@ export const reviewsFinalCta = {
   },
 };
 
-/** Temporary meta description while no public testimonials are published. */
 export const reviewsSeoDescription =
-  "Learn what you can expect from Holly at HNM Professional Services. Approved testimonials and review links will be added as they become available.";
+  "Read Google reviews for Holly at HNM Professional Services, or request a free consultation to talk through the support you need.";
+
+export const reviewsAttribution =
+  "Reviews are sourced from Google and updated automatically. Google and the Google logo are trademarks of Google LLC.";

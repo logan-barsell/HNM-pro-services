@@ -135,6 +135,7 @@ export const privacySections = {
       "An email-delivery or email-hosting provider",
       "A website-hosting provider",
       "A domain provider",
+      "Google Places (used in a scheduled sync to display public Google reviews as static content)",
       "Security or spam-prevention tools used by those services",
     ],
   },
@@ -145,7 +146,7 @@ export const privacySections = {
     noAbsoluteClaim:
       "This notice does not claim that the website uses no cookies in every technical sense, because essential hosting or form-provider technologies may still be involved once those services are connected.",
     updateNote:
-      "If analytics, advertising tools, embedded maps, video players, review widgets, or scheduling tools are added later, this section will be updated before those features go live.",
+      "Public Google reviews shown on this site are copied into the website during a scheduled sync and served as static content. The public site does not load a live Google reviews widget in the visitor’s browser. If analytics, advertising tools, embedded maps, video players, review widgets, or scheduling tools are added later, this section will be updated before those features go live.",
   },
   sharing: {
     id: "information-sharing",

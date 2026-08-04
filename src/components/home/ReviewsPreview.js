@@ -3,10 +3,15 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { homeReviewsPreview } from "@/content/home";
-import { brandRadii } from "@/theme/brandTokens";
+import { getHomeReviews } from "@/content/reviewsData";
+import { reviewsAttribution } from "@/content/reviews";
+import TestimonialCard from "@/components/reviews/TestimonialCard";
 import PrimaryCTA from "@/components/shared/PrimaryCTA";
 
 export default function ReviewsPreview() {
+  const reviews = getHomeReviews();
+  const hasReviews = reviews.length > 0;
+
   return (
     <Box
       component="section"
@@ -40,48 +45,36 @@ export default function ReviewsPreview() {
             mx: { xs: "auto", md: 0 },
           }}
         >
-          {homeReviewsPreview.note}
+          {hasReviews
+            ? homeReviewsPreview.supporting
+            : homeReviewsPreview.emptyNote}
         </Typography>
 
-        <Grid container spacing={3} sx={{ mb: 4 }}>
-          {homeReviewsPreview.placeholders.map((item) => (
-            <Grid key={item.id} size={{ xs: 12, md: 4 }}>
-              <Box
-                component="blockquote"
-                sx={{
-                  m: 0,
-                  height: "100%",
-                  p: 3,
-                  borderRadius: `${brandRadii.card}px`,
-                  bgcolor: "background.default",
-                  border: "1px solid",
-                  borderColor: "rgba(255,255,255,0.18)",
-                  color: "text.primary",
-                }}
-              >
-                <Typography
-                  variant="body1"
-                  sx={{
-                    mb: 2.5,
-                    fontFamily: "var(--font-display), Georgia, serif",
-                    fontSize: "1.2rem",
-                    lineHeight: 1.5,
-                    color: "text.primary",
-                  }}
-                >
-                  “{item.quote}”
-                </Typography>
-                <Typography
-                  variant="body2"
-                  color="text.secondary"
-                  component="footer"
-                >
-                  — {item.attribution}
-                </Typography>
-              </Box>
-            </Grid>
-          ))}
-        </Grid>
+        {hasReviews ? (
+          <Grid container spacing={3} sx={{ mb: 2 }}>
+            {reviews.map((item) => (
+              <Grid key={item.id} size={{ xs: 12, md: 4 }}>
+                <TestimonialCard {...item} tone="onGreen" />
+              </Grid>
+            ))}
+          </Grid>
+        ) : null}
+
+        {hasReviews ? (
+          <Typography
+            variant="caption"
+            sx={{
+              display: "block",
+              mb: 4,
+              color: "rgba(255,255,255,0.7)",
+              textAlign: { xs: "center", md: "left" },
+            }}
+          >
+            {reviewsAttribution}
+          </Typography>
+        ) : (
+          <Box sx={{ mb: 4 }} />
+        )}
 
         <Box sx={{ textAlign: { xs: "center", md: "left" } }}>
           <PrimaryCTA
