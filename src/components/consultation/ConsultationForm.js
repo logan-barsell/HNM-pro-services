@@ -178,8 +178,6 @@ export default function ConsultationForm() {
         body: JSON.stringify({
           "Full Name": values.fullName.trim(),
           "Email Address": values.email.trim(),
-          // Formspree special: sets Reply-To to the visitor’s address.
-          _replyto: values.email.trim(),
           "Phone Number": values.phone.trim() || "Not provided",
           "Service Needed": serviceNeededLabel,
           "Service location or zip code": values.location.trim(),

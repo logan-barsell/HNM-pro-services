@@ -117,8 +117,6 @@ export default function GeneralContactForm() {
         body: JSON.stringify({
           "Full Name": values.fullName.trim(),
           "Email Address": values.email.trim(),
-          // Formspree special: sets Reply-To to the visitor’s address.
-          _replyto: values.email.trim(),
           "Phone Number": values.phone.trim() || "Not provided",
           "Inquiry Type": inquiryTypeLabel,
           Message: values.message.trim(),

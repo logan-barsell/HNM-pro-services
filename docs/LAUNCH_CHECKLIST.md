@@ -142,12 +142,13 @@ Workflow file: [`.github/workflows/deploy.yml`](../.github/workflows/deploy.yml)
 
 Forms already JSON-POST fields such as:
 
-- Contact: `Full Name`, `Email Address`, `Phone Number`, `Inquiry Type`, `Message`, `_replyto`, `_subject`
-- Consultation: `Full Name`, `Email Address`, `Phone Number`, `Service Needed`, `Service location or zip code`, `Preferred consultation timeframe`, `When service may be needed`, `Tell me a little about what you need`, `How did you hear about me?`, `_replyto`, `_subject`
+- Contact: `Full Name`, `Email Address`, `Phone Number`, `Inquiry Type`, `Message`, `_subject`
+- Consultation: `Full Name`, `Email Address`, `Phone Number`, `Service Needed`, `Service location or zip code`, `Preferred consultation timeframe`, `When service may be needed`, `Tell me a little about what you need`, `How did you hear about me?`, `_subject`
+- Automatic Formspree Reply-To is not used; Holly replies using **Email Address** in the message body.
 
 - [ ] In Formspree, confirm custom fields are allowed (or map/rename if the plan requires fixed field names)
-- [ ] Use `_subject` (already sent) so Outlook subjects stay useful (`HNM contact: …`, `HNM consultation: …`)
-- [ ] Prefer Reply-To / “reply to submitter” behavior so Holly can reply from Outlook to the visitor
+- [ ] Use `_subject` (already sent) so Outlook subjects stay useful (`HNM Contact: …`, `HNM Consultation: …`)
+- [ ] Holly replies using the **Email Address** in the message body (no `_replyto`)
 
 ### 8.3 Spam and limits
 
@@ -197,7 +198,7 @@ Do **not** point a native `<form action="https://formspree.io/...">` submit at F
 - [ ] Contact submit → stay on our UI with success state → email in Holly’s Outlook
 - [ ] Consultation submit → stay on our UI → email with all fields
 - [ ] No redirect to a Formspree thank-you page
-- [ ] Reply from Outlook reaches the visitor when Reply-To is configured
+- [ ] Reply from Outlook using the visitor’s Email Address in the body reaches them
 - [ ] Invalid/disabled endpoint or Formspree error → our error alert (not a false success)
 - [ ] Spot-check spam folder once; adjust Formspree filters if needed
 
