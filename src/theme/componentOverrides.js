@@ -214,7 +214,8 @@ export const componentOverrides = {
       },
       outlined: {
         // Vertically centers the idle label in a 56px outlined field
-        transform: "translate(14px, 16px) scale(1)",
+        // (18px Y aligns with 16.5px input padding + font metrics)
+        transform: "translate(14px, 18px) scale(1)",
         "&.MuiInputLabel-shrink": {
           transform: "translate(14px, -9px) scale(0.75)",
         },

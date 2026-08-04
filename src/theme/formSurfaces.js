@@ -134,8 +134,11 @@ export const onGreenSubmitButtonSx = {
   },
 };
 
+/** Soft brand-green wash for cream-section inputs (~20% opacity). */
+const creamInputFill = "rgba(108, 137, 119, 0.1)";
+
 /**
- * Cream-section form: transparent shell and inputs, dark type, green accents.
+ * Cream-section form: transparent shell, soft green inputs, dark type.
  */
 export const onCreamFormSx = {
   p: { xs: 2.5, md: 3.5 },
@@ -162,7 +165,7 @@ export const onCreamFormSx = {
   },
 
   "& .MuiOutlinedInput-root": {
-    backgroundColor: "transparent",
+    backgroundColor: creamInputFill,
     color: brandColors.darkText,
     "& .MuiOutlinedInput-notchedOutline": {
       borderColor: brandColors.borderStrong,
@@ -178,6 +181,7 @@ export const onCreamFormSx = {
       borderColor: semanticColors.error,
     },
     "&.Mui-disabled": {
+      backgroundColor: "rgba(108, 137, 119, 0.1)",
       "& .MuiOutlinedInput-notchedOutline": {
         borderColor: brandColors.border,
       },
@@ -190,7 +194,7 @@ export const onCreamFormSx = {
     "&:-webkit-autofill, &:-webkit-autofill:hover, &:-webkit-autofill:focus": {
       WebkitTextFillColor: brandColors.darkText,
       caretColor: brandColors.darkText,
-      boxShadow: `0 0 0 1000px ${brandColors.cream} inset`,
+      boxShadow: `0 0 0 1000px ${creamInputFill} inset`,
       transition: "background-color 99999s ease-out 0s",
     },
   },

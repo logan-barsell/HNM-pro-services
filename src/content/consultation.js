@@ -1,5 +1,6 @@
 import { business } from "@/content/business";
 import { routes } from "@/content/routes";
+import { pageSeo } from "@/content/seo";
 
 /**
  * Consultation page content and form options.
@@ -186,7 +187,7 @@ export const alternativeContact = {
 };
 
 export const consultationSeoDescription =
-  "Request a free consultation with Holly at HNM Professional Services to discuss pet care, nonmedical senior companionship, house sitting, or home-check needs.";
+  pageSeo[routes.consultation].description;
 
 export const consultationBusiness = {
   phone: business.phone,

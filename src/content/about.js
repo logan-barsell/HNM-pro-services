@@ -24,7 +24,7 @@ export const aboutHero = {
 
 export const ownerIntroduction = {
   ownerName: business.ownerName,
-  heading: "Nice to meet you",
+  heading: "Nice to meet you.",
   paragraphs: [
     "I’m Holly Abbott, the owner of HNM Professional Services. I work one-on-one with families across the East Valley who need dependable help that still feels personal.",
     "When you reach out, you’re talking with me—not a call center or a rotating staff. We’ll take time to understand your routines, preferences, and what good care looks like in your home.",

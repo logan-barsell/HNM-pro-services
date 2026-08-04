@@ -171,7 +171,7 @@ Intended handling (still pending assets):
 - Hero background video — muted, looping, compressed, with poster fallback; respect reduced motion
 - Logo files — SVG preferred when available; PNG fallbacks documented under `public/brand/`
 - Responsive photos — WebP or AVIF where practical
-- Favicons and Open Graph image — deferred until files exist; do not reference missing URLs
+- Favicons and Open Graph image — `public/brand/` (including `HNM_OG.png`)
 
 Phase 2 established the brand theme. Pages still use placeholder media regions only. No autoplay video asset is included.
 
@@ -188,8 +188,11 @@ The actual GitHub Actions workflow and Nginx configuration will be created in a 
 
 ## SEO Metadata
 
-- Root defaults and title template in `src/app/layout.js`
-- Per-route metadata via `createPageMetadata()` in `src/utils/metadata.js`
-- Sitemap and robots generated from App Router metadata routes
-- `metadataBase` currently uses the placeholder `business.siteUrl` (`https://www.example.com`) until the real domain is confirmed
-- Icons and social images are intentionally omitted until `public/brand/` assets exist
+- Root defaults and title template in `src/app/layout.js` (`metadataBase` = production `business.siteUrl`)
+- Per-route titles and descriptions in `src/content/seo.js`, applied via `createPageMetadata()` in `src/utils/metadata.js`
+- Open Graph and Twitter (`summary_large_image`) use `/brand/HNM_OG.png`
+- JSON-LD: `ProfessionalService` + `WebSite` sitewide (`src/content/structuredData.js`); `BreadcrumbList` on non-home pages
+- Favicons and web manifest under `public/brand/`
+- Sitemap and robots from App Router metadata routes (`src/app/sitemap.js`, `src/app/robots.js`)
+- Canonical URLs honor `trailingSlash: true`
+- Ongoing backlog (Search Console, GBP, content): [SEO.md](./SEO.md)

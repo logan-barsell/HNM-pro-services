@@ -61,3 +61,7 @@ Desktop.ini
 deploy/
 deployment/
 release-artifacts/
+
+# Full-resolution media masters (optimized copies live in public/brand/)
+public/brand/_originals/
+

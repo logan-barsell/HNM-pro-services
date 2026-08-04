@@ -1,8 +1,9 @@
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
+import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { privacyHero } from "@/content/privacy";
-import AppLink from "@/components/shared/AppLink";
+import PrimaryCTA from "@/components/shared/PrimaryCTA";
 import {
   pageHeroPaddingTopSx,
   siteHeaderPullSx,
@@ -21,8 +22,8 @@ export default function PrivacyHero() {
         color: "common.white",
       }}
     >
-      <Container maxWidth="md">
-        <Box sx={{ maxWidth: "42rem" }}>
+      <Container maxWidth="lg">
+        <Box sx={{ maxWidth: "46rem" }}>
           <Typography
             variant="overline"
             component="p"
@@ -41,20 +42,46 @@ export default function PrivacyHero() {
           <Typography
             variant="body1"
             sx={{
-              mb: 2.5,
+              mb: 4,
               color: "rgba(255,255,255,0.9)",
               fontSize: { xs: "1.05rem", md: "1.125rem" },
             }}
           >
             {privacyHero.supporting}
           </Typography>
-          <AppLink
-            href={privacyHero.contactHref}
-            underline="hover"
-            sx={{ fontWeight: 600, color: "common.white" }}
+          <Stack
+            direction={{ xs: "column", sm: "row" }}
+            spacing={1.5}
+            sx={{ alignItems: { xs: "stretch", sm: "center" } }}
           >
-            {privacyHero.contactLinkLabel}
-          </AppLink>
+            <PrimaryCTA
+              label={privacyHero.primaryCta.label}
+              href={privacyHero.primaryCta.href}
+              sx={{
+                width: { xs: "100%", sm: "auto" },
+                bgcolor: "common.white",
+                color: "primary.dark",
+                "&:hover": {
+                  bgcolor: "background.default",
+                  color: "primary.dark",
+                },
+              }}
+            />
+            <PrimaryCTA
+              variant="outlined"
+              label={privacyHero.secondaryCta.label}
+              href={privacyHero.secondaryCta.href}
+              sx={{
+                width: { xs: "100%", sm: "auto" },
+                borderColor: "rgba(255,255,255,0.7)",
+                color: "common.white",
+                "&:hover": {
+                  borderColor: "common.white",
+                  bgcolor: "rgba(255,255,255,0.1)",
+                },
+              }}
+            />
+          </Stack>
         </Box>
       </Container>
     </Box>

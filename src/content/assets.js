@@ -1,6 +1,7 @@
 /**
  * Brand asset paths under public/brand/ and future media paths.
  * Only render paths that exist in the repository.
+ * Masters for re-export live in public/brand/_originals/ (gitignored).
  */
 export const brandAssets = {
   logo: "/brand/HNM_logo.png",
@@ -12,10 +13,12 @@ export const brandAssets = {
   icon512: "/brand/android-chrome-512x512.png",
   manifest: "/brand/site.webmanifest",
   heroVideo: "/brand/HNM-video.mp4",
-  ownerPortrait: "/brand/bio_img.PNG",
+  heroPoster: "/brand/HNM-video-poster.jpg",
+  ownerPortrait: "/brand/bio_img.jpg",
   homeSupporting1: "/brand/home-1.jpg",
   petCare: "/brand/petcare.jpg",
   seniorCare: "/brand/seniorcare.jpg",
-  homeCare: "/brand/homecare.png",
-  serviceAreaMap: "/brand/HNM-map.png",
+  homeCare: "/brand/homecare.jpg",
+  serviceAreaMap: "/brand/HNM-map.jpg",
+  ogImage: "/brand/HNM_OG.jpg",
 };

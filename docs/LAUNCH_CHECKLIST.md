@@ -101,7 +101,7 @@ Current mail-related records to **leave alone**:
 
 - [ ] Set `business.siteUrl` in `src/content/business.js` to `https://hnmproservices.com` (replaces `https://www.example.com`)
 - [ ] Confirm metadata, sitemap, and robots pick up the real host (`src/utils/metadata.js`, `src/app/robots.js`, layout `metadataBase`)
-- [ ] Update privacy provider fields in `src/content/privacy.js` once Formspree is configured (`formProviderName`, Formspree privacy URL, `lastUpdated`)
+- [ ] Update privacy provider fields in `src/content/privacy.js` once Formspree is configured (`formProviderName`, Formspree privacy URL, `lastUpdated`) — **done for Formspree, DigitalOcean, Microsoft, GoDaddy, and Google**
 - [ ] Plan to remove form “not connected yet” inactive notices once endpoints are live
 
 ---

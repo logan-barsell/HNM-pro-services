@@ -1,4 +1,5 @@
 import { routes } from "@/content/routes";
+import { pageSeo } from "@/content/seo";
 import {
   getGoogleBusinessProfileUrl,
   getGoogleLeaveReviewUrl,
@@ -108,8 +109,7 @@ export const reviewsFinalCta = {
   },
 };
 
-export const reviewsSeoDescription =
-  "Read Google reviews for Holly at HNM Professional Services, or request a free consultation to talk through the support you need.";
+export const reviewsSeoDescription = pageSeo[routes.reviews].description;
 
 export const reviewsAttribution =
   "Reviews are sourced from Google and updated automatically. Google and the Google logo are trademarks of Google LLC.";

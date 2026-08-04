@@ -22,7 +22,7 @@ export const homeHero = {
     href: routes.services,
   },
   videoSrc: brandAssets.heroVideo,
-  posterSrc: null,
+  posterSrc: brandAssets.heroPoster,
   mediaPlaceholder:
     "Hero lifestyle video and poster image will be added here when media assets are ready.",
 };

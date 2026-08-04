@@ -42,9 +42,9 @@ export default function ServiceArea() {
                   position: "relative",
                   borderRadius: `${brandRadii.media}px`,
                   overflow: "hidden",
-                  minHeight: { xs: 220, md: 300 },
-                  aspectRatio: "4 / 3",
-                  bgcolor: "secondary.main",
+                  width: "100%",
+                  aspectRatio: "3 / 2",
+                  bgcolor: "transparent",
                 }}
               >
                 <Image
@@ -52,7 +52,7 @@ export default function ServiceArea() {
                   alt={mapAlt}
                   fill
                   sizes="(max-width: 900px) 100vw, 50vw"
-                  style={{ objectFit: "contain" }}
+                  style={{ objectFit: "cover" }}
                 />
               </Box>
             ) : (

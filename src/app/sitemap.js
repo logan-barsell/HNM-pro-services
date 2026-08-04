@@ -1,7 +1,17 @@
-import { publicRoutes } from "@/content/routes";
+import { publicRoutes, routes } from "@/content/routes";
 import { absoluteUrl } from "@/utils/metadata";
 
 export const dynamic = "force-static";
+
+const routePriority = {
+  [routes.home]: 1,
+  [routes.consultation]: 0.9,
+  [routes.services]: 0.8,
+  [routes.contact]: 0.8,
+  [routes.about]: 0.7,
+  [routes.reviews]: 0.7,
+  [routes.privacy]: 0.3,
+};
 
 /**
  * Static sitemap for all public marketing routes.
@@ -10,7 +20,7 @@ export const dynamic = "force-static";
 export default function sitemap() {
   return publicRoutes.map((path) => ({
     url: absoluteUrl(path),
-    changeFrequency: "monthly",
-    priority: path === "/" ? 1 : 0.7,
+    changeFrequency: path === routes.privacy ? "yearly" : "monthly",
+    priority: routePriority[path] ?? 0.7,
   }));
 }

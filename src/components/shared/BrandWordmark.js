@@ -49,7 +49,7 @@ export default function BrandWordmark({
           alt=""
           width={logoSize}
           height={logoSize}
-          priority={compact}
+          priority
           style={{
             width: "100%",
             height: "100%",

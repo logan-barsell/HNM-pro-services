@@ -1,14 +1,17 @@
 import Box from "@mui/material/Box";
 import { business } from "@/content/business";
+import { brandAssets } from "@/content/assets";
 import { defaultSeo } from "@/content/seo";
+import { buildSiteGraph } from "@/content/structuredData";
 import SiteFooter from "@/components/layout/SiteFooter";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteHeaderOffset from "@/components/layout/SiteHeaderOffset";
 import ScrollReveal from "@/components/motion/ScrollReveal";
 import ThemeRegistry from "@/components/providers/ThemeRegistry";
+import JsonLd from "@/components/seo/JsonLd";
 import SkipLink from "@/components/shared/SkipLink";
 import { fontVariableClassName } from "@/theme/fonts";
-import { absoluteUrl } from "@/utils/metadata";
+import { absoluteUrl, defaultOgImage } from "@/utils/metadata";
 import "./globals.css";
 
 export const metadata = {
@@ -26,13 +29,13 @@ export const metadata = {
     siteName: business.name,
     title: business.name,
     description: business.description,
-    // og:image deferred until public/brand/og-image.png exists
+    images: [defaultOgImage],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: business.name,
     description: business.description,
-    // twitter:image deferred until brand assets exist
+    images: [brandAssets.ogImage],
   },
   robots: {
     index: true,
@@ -67,6 +70,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={fontVariableClassName}>
       <body>
+        <JsonLd data={buildSiteGraph()} />
         <ThemeRegistry>
           <SkipLink />
           <Box

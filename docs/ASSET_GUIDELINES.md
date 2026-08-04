@@ -46,12 +46,14 @@ Do not trace, distort, recolor, or redesign the final logo without approval.
 Preferred:
 
 - Authentic client-provided photography
-- High-resolution source images
+- High-resolution **masters** kept outside the deploy tree (`public/brand/_originals/`, gitignored)
+- Web delivery files sized for display (~1200–1800px long edge, high-quality JPEG)
 - Landscape, portrait, and square crop options where available
 - Images that communicate warmth, trust, companionship, pets, and home care
 
 Avoid:
 
+- Shipping multi‑megapixel camera originals in `public/`
 - Low-resolution images
 - Visibly artificial stock scenes
 - Images that imply medical treatment
@@ -65,8 +67,8 @@ Requirements:
 - Muted
 - Looping
 - No essential information conveyed only through video
-- Poster image fallback
-- Compressed for web delivery
+- Poster image fallback (`HNM-video-poster.jpg`)
+- Compressed for web delivery (target roughly under ~8 MB for a short 1080p-class loop)
 - Text overlay must remain readable
 - Respect reduced-motion preferences
 - Avoid autoplay behavior that harms usability or performance

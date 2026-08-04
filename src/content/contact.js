@@ -1,5 +1,6 @@
 import { business } from "@/content/business";
 import { routes } from "@/content/routes";
+import { pageSeo } from "@/content/seo";
 
 /**
  * Contact page content.
@@ -135,8 +136,7 @@ export const contactFinalCta = {
   },
 };
 
-export const contactSeoDescription =
-  "Get in touch with Holly at HNM Professional Services for general questions, service-area inquiries, or existing-client needs—or request a free consultation for a new service.";
+export const contactSeoDescription = pageSeo[routes.contact].description;
 
 /** Re-export business contact fields for single-source display. */
 export const contactBusiness = {

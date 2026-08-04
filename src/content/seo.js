@@ -8,42 +8,47 @@ export const defaultSeo = {
   applicationName: business.name,
 };
 
+/**
+ * Per-route titles and meta descriptions.
+ * Titles that use the layout template omit the brand suffix (added as `| HNM…`).
+ * Keep titles ~≤60 chars and descriptions ~150–160 chars where practical.
+ */
 export const pageSeo = {
   [routes.home]: {
     title:
-      "HNM Professional Services | Compassionate Care for People, Pets & Homes",
+      "HNM Professional Services | Care for People, Pets & Homes",
     description:
-      "Personal support from Holly at HNM Professional Services—dependable help for seniors, pets, and homes across the East Valley. Request a free consultation to talk through what you need.",
+      "Holly at HNM Professional Services offers pet sitting, dog walking, nonmedical senior companionship, and house sitting across Scottsdale, Phoenix, Tempe, Chandler, Mesa, and Gilbert. Request a free consultation.",
     absoluteTitle: true,
   },
   [routes.services]: {
-    title: "Services",
+    title: "Pet Sitting, Senior Care & House Sitting",
     description:
-      "Explore pet sitting, dog walking, nonmedical senior companionship, and house-sitting services with Holly at HNM Professional Services.",
+      "Explore pet sitting and dog walking, nonmedical companion care for seniors, and house sitting or home checks with Holly—serving the East Valley including Scottsdale, Phoenix, Tempe, Chandler, Mesa, and Gilbert.",
   },
   [routes.about]: {
-    title: "About",
+    title: "About Holly Abbott",
     description:
-      "Meet Holly Abbott, the person behind HNM Professional Services—personal, dependable support for people, pets, and homes.",
+      "Meet Holly Abbott of HNM Professional Services—personal, dependable support for seniors, pets, and homes across Arizona’s East Valley. Supporting People, Cherishing Pets.",
   },
   [routes.reviews]: {
-    title: "Reviews",
+    title: "Client Reviews & Testimonials",
     description:
-      "Learn what you can expect from Holly at HNM Professional Services. Approved testimonials and review links will be added as they become available.",
+      "Read Google reviews and client testimonials for HNM Professional Services. See what families say about Holly’s pet sitting, senior companionship, and house-sitting care in the East Valley.",
   },
   [routes.consultation]: {
     title: "Request a Free Consultation",
     description:
-      "Request a free consultation with Holly at HNM Professional Services to discuss pet care, nonmedical senior companionship, house sitting, or home-check needs.",
+      "Request a free consultation with Holly at HNM Professional Services to discuss pet sitting, dog walking, nonmedical senior companionship, house sitting, or home checks in the East Valley.",
   },
   [routes.contact]: {
-    title: "Contact",
+    title: "Contact Holly",
     description:
-      "Get in touch with Holly at HNM Professional Services for general questions, service-area inquiries, or existing-client needs—or request a free consultation for a new service.",
+      "Contact HNM Professional Services in the East Valley—call or email Holly, or send a message for general questions and existing-client needs. New services start with a free consultation.",
   },
   [routes.privacy]: {
     title: "Privacy Notice",
     description:
-      "Learn how HNM Professional Services collects, uses, and protects information submitted through its website and contact forms.",
+      "How HNM Professional Services collects, uses, and protects information from the Contact and Consultation forms, and which providers help operate hnmproservices.com.",
   },
 };

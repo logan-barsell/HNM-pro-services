@@ -105,6 +105,7 @@ Project documentation lives in `docs/`:
 - [ASSET_GUIDELINES.md](docs/ASSET_GUIDELINES.md) — Logo, image, video, naming, and alt-text standards
 - [GOOGLE_REVIEWS.md](docs/GOOGLE_REVIEWS.md) — Google reviews sync setup, secrets, and next steps
 - [LAUNCH_CHECKLIST.md](docs/LAUNCH_CHECKLIST.md) — Domain, Nginx, GitHub Actions deploy, and Formspree launch checklist
+- [SEO.md](docs/SEO.md) — Ongoing SEO backlog (Search Console, GBP, content growth)
 - [DECISIONS.md](docs/DECISIONS.md) — Architecture Decision Log (ADRs)
 
 ## Contributing and Development Expectations
