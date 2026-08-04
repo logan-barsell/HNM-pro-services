@@ -6,6 +6,7 @@ import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import NextLink from "next/link";
+import { useEffect, useRef } from "react";
 import { homeHero } from "@/content/home";
 import FadeIn from "@/components/shared/FadeIn";
 import PrimaryCTA from "@/components/shared/PrimaryCTA";
@@ -14,8 +15,50 @@ import {
   siteHeaderPullSx,
 } from "@/theme/layout";
 
+function prefersReducedMotion() {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
 export default function Hero() {
   const hasVideo = Boolean(homeHero.videoSrc);
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    if (!hasVideo) {
+      return undefined;
+    }
+
+    const video = videoRef.current;
+    if (!video) {
+      return undefined;
+    }
+
+    const tryPlay = () => {
+      if (prefersReducedMotion() || !video.paused) {
+        return;
+      }
+      video.play().catch(() => {
+        // Autoplay may still be blocked; poster remains visible.
+      });
+    };
+
+    const onVisibilityChange = () => {
+      if (document.visibilityState === "visible") {
+        tryPlay();
+      }
+    };
+
+    // Mobile browsers pause media when the tab/app is backgrounded.
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    window.addEventListener("pageshow", tryPlay);
+    window.addEventListener("focus", tryPlay);
+
+    return () => {
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+      window.removeEventListener("pageshow", tryPlay);
+      window.removeEventListener("focus", tryPlay);
+    };
+  }, [hasVideo]);
 
   return (
     <Box
@@ -43,6 +86,7 @@ export default function Hero() {
 
       {hasVideo ? (
         <Box
+          ref={videoRef}
           component="video"
           autoPlay
           muted
