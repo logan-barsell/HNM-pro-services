@@ -18,13 +18,13 @@ export const pageSeo = {
     title:
       "HNM Professional Services | Care for People, Pets & Homes",
     description:
-      "Holly at HNM Professional Services offers pet sitting, dog walking, nonmedical senior companionship, and house sitting across Scottsdale, Phoenix, Tempe, Chandler, Mesa, and Gilbert. Request a free consultation.",
+      "Holly offers pet sitting for small dogs and cats, small-dog walking, nonmedical senior companionship, and house sitting across Arizona’s East Valley.",
     absoluteTitle: true,
   },
   [routes.services]: {
     title: "Pet Sitting, Senior Care & House Sitting",
     description:
-      "Explore pet sitting and dog walking, nonmedical companion care for seniors, and house sitting or home checks with Holly—serving the East Valley including Scottsdale, Phoenix, Tempe, Chandler, Mesa, and Gilbert.",
+      "Explore care for small dogs and cats, nonmedical companion care for seniors, and house sitting or home checks with Holly in Arizona’s East Valley.",
   },
   [routes.about]: {
     title: "About Holly Abbott",
@@ -39,12 +39,12 @@ export const pageSeo = {
   [routes.reviews]: {
     title: "Client Reviews & Testimonials",
     description:
-      "Read Google reviews and client testimonials for HNM Professional Services. See what families say about Holly’s pet sitting, senior companionship, and house-sitting care in the East Valley.",
+      "Read client reviews of Holly’s care for small dogs and cats, senior companionship, and house-sitting services across Arizona’s East Valley.",
   },
   [routes.consultation]: {
     title: "Request a Free Consultation",
     description:
-      "Request a free consultation with Holly at HNM Professional Services to discuss pet sitting, dog walking, nonmedical senior companionship, house sitting, or home checks in the East Valley.",
+      "Request a free consultation to discuss care for small dogs and cats, nonmedical senior companionship, house sitting, or home checks in the East Valley.",
   },
   [routes.contact]: {
     title: "Contact Holly",

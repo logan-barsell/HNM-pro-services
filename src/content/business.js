@@ -10,7 +10,7 @@ export const business = {
   ownerName: "Holly Abbott",
   tagline: "Supporting People, Cherishing Pets.",
   description:
-    "Pet sitting, dog walking, nonmedical senior companionship, and house sitting from Holly at HNM Professional Services—thoughtful, dependable care across Scottsdale, Phoenix, Tempe, Chandler, Mesa, and Gilbert.",
+    "Pet sitting for small dogs and cats, small-dog walking, nonmedical senior companionship, and house sitting from Holly at HNM Professional Services across the East Valley.",
   shortDescription:
     "Personal support for seniors, pets, and homes across the East Valley.",
   siteUrl: "https://hnmproservices.com",
@@ -25,7 +25,7 @@ export const services = [
     id: "pet-sitting",
     name: "Pet Sitting & Dog Walking",
     summary:
-      "Walks, visits, and everyday pet care so your pets stay comfortable while you’re away.",
+      "Walks for small dogs, plus visits and everyday care for small dogs and cats while you’re away.",
   },
   {
     id: "companion-care",

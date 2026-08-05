@@ -11,7 +11,7 @@ export const servicesHero = {
   eyebrow: "Services",
   heading: "Dependable support for people, pets, and homes.",
   supporting:
-    "I offer pet care, nonmedical senior companionship, and house sitting—always starting with a free consultation so we can talk through expectations, scheduling, and details together.",
+    "I offer pet care for small dogs and cats, nonmedical senior companionship, and house sitting—always starting with a free consultation so we can talk through expectations, scheduling, and details together.",
   primaryCta: {
     label: "Request a Free Consultation",
     href: routes.consultation,
@@ -28,7 +28,7 @@ export const serviceDetails = [
     eyebrow: "Pets",
     title: "Pet Sitting & Dog Walking",
     description:
-      "When you can’t be there, I can help keep your pets comfortable with walks, visits, feeding, and the little routines that matter. We’ll review everything together before care begins.",
+      "When you can’t be there, I can help keep your small dog or cat comfortable with visits, feeding, and the little routines that matter, plus walks for small dogs. We’ll review everything together before care begins.",
     bulletsTitle: "What we can talk about",
     bullets: [
       "Scheduled dog walks",
@@ -37,11 +37,11 @@ export const serviceDetails = [
       "Basic routine support",
       "Companionship and playtime",
       "Updates for you while you’re away",
-      "Care for small or boutique pets, subject to consultation",
+      "Care for small dogs and cats only, subject to consultation",
     ],
     goodFitTitle: "A good fit if…",
     goodFit:
-      "You’re looking for attentive, personal pet care while you’re away, at work, or otherwise unavailable—and you’d rather review routines and expectations together before service begins.",
+      "You’re looking for attentive care for a small dog or cat while you’re away, at work, or otherwise unavailable—and you’d rather review routines and expectations together before service begins.",
     expectationNote:
       "We’ll discuss and confirm services during the consultation. Availability, visit frequency, and any special requests are reviewed before care begins.",
     ctaLabel: "Discuss Pet Care Needs",
@@ -96,7 +96,7 @@ export const serviceDetails = [
       "Watering plants",
       "Adjusting lights or blinds",
       "Basic visual checks for obvious concerns",
-      "Coordinating pet-care tasks when included in the agreed service",
+      "Coordinating small-dog or cat-care tasks when included in the agreed service",
       "Providing updates after visits",
     ],
     goodFitTitle: "A good fit if…",

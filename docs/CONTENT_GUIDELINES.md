@@ -63,7 +63,9 @@ Avoid:
 - Do not claim certifications or special qualifications unless confirmed
 - Do not promise availability
 - Avoid veterinary or medical claims
-- Do not publish “boutique” or specialty positioning until the client approves final wording
+- State clearly that Holly cares for small dogs and cats only and is not a fit for larger dogs
+- Keep pet-care requests subject to consultation
+- Do not publish a weight or size cutoff unless Holly provides and approves one
 
 ### House sitting
 

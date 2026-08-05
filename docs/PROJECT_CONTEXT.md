@@ -13,7 +13,7 @@ HNM Professional Services helps people care for what matters most—pets, aging 
 
 ### Pet Sitting & Dog Walking
 
-In-home pet care and walking for owners who need dependable support while they are away or busy. The business has discussed specializing in small or boutique pets, but that positioning and final wording must be verified with the client before publishing.
+In-home pet care and walking for owners who need dependable support while they are away or busy. Holly cares for small dogs and cats only and is not a fit for larger dogs. Each request remains subject to consultation.
 
 ### Companion Care for Seniors
 

@@ -28,7 +28,7 @@ export const notFoundDestinations = {
       id: "services",
       title: "Services",
       description:
-        "Pet sitting and dog walking, companion care for seniors, and house sitting or home checks.",
+        "Care for small dogs and cats, companion care for seniors, and house sitting or home checks.",
       href: routes.services,
       ctaLabel: "Explore Services",
     },

@@ -140,7 +140,7 @@ export const consultationFormCopy = {
       name: "needs",
       label: "Tell me a little about what you need",
       helperText:
-        "Share general information about the service, schedule, routines, or questions you’d like to discuss.",
+        "Share general information about the service, schedule, routines, or questions you’d like to discuss. For pet care, please mention whether you have a small dog or cat—I care for small dogs and cats only.",
       sensitiveNotice:
         "Please do not include medical records, financial information, passwords, alarm codes, entry codes, or other sensitive access details.",
       requiredMessage: "Tell me briefly what kind of support you need.",
