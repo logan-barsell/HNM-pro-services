@@ -133,7 +133,9 @@ export default function IconCardSection({
                     sx={{
                       width: 64,
                       height: 64,
-                      mb: 2.5,
+                      // Cream cards have no icon chip, so the 64px box already
+                      // supplies the gap above the title.
+                      mb: isGreen ? 2.5 : 0,
                       borderRadius: `${brandRadii.media}px`,
                       bgcolor: isGreen ? "primary.dark" : "transparent",
                       color: isGreen ? "common.white" : "primary.dark",
