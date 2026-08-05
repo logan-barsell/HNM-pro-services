@@ -110,7 +110,7 @@ Current mail-related records to **leave alone**:
 
 - [ ] Locally: `npm ci && npm run build` (Node 24 per `.nvmrc`)
 - [ ] Rsync/scp contents of `out/` to the web root
-- [ ] Spot-check `/`, `/services/`, `/about/`, `/reviews/`, `/consultation/`, `/contact/`, `/privacy/`
+- [ ] Spot-check `/`, `/services/`, `/about/`, `/gallery/`, `/reviews/`, `/consultation/`, `/contact/`, `/privacy/`
 - [ ] Confirm trailing-slash routes and a sensible 404
 
 ---

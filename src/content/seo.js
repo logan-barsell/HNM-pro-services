@@ -31,6 +31,11 @@ export const pageSeo = {
     description:
       "Meet Holly Abbott of HNM Professional Services—personal, dependable support for seniors, pets, and homes across Arizona’s East Valley. Supporting People, Cherishing Pets.",
   },
+  [routes.gallery]: {
+    title: "Photo Gallery",
+    description:
+      "Browse photos from HNM Professional Services—a look at Holly’s local care for people, pets, and homes across Arizona’s East Valley.",
+  },
   [routes.reviews]: {
     title: "Client Reviews & Testimonials",
     description:

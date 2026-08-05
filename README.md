@@ -30,6 +30,7 @@ Final service descriptions and boundaries will be refined with the client before
 | Home                        | `/`             |
 | Services                    | `/services`     |
 | About                       | `/about`        |
+| Gallery                     | `/gallery`      |
 | Reviews                     | `/reviews`      |
 | Request a Free Consultation | `/consultation` |
 | Contact                     | `/contact`      |

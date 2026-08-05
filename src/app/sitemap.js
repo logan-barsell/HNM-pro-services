@@ -9,6 +9,7 @@ const routePriority = {
   [routes.services]: 0.8,
   [routes.contact]: 0.8,
   [routes.about]: 0.7,
+  [routes.gallery]: 0.6,
   [routes.reviews]: 0.7,
   [routes.privacy]: 0.3,
 };

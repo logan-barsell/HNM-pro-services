@@ -29,6 +29,7 @@ src/
 | `/`             | Home — introduce the business, services overview, and primary CTA                             |
 | `/services`     | Detail Pet Sitting & Dog Walking, Companion Care for Seniors, and House Sitting & Home Checks |
 | `/about`        | Business story, values, and owner/operator context (client-approved biography)                |
+| `/gallery`      | Photo gallery of HNM Professional Services                                                    |
 | `/reviews`      | Client reviews and testimonials                                                               |
 | `/consultation` | Request a free consultation form                                                              |
 | `/contact`      | Phone, email, and contact guidance                                                            |
@@ -108,7 +109,7 @@ The root `layout.js` remains a Server Component. Only the provider/registry and 
 - Route pages
 - Root layout shell
 - Footer content composition
-- Most shared presentational sections (`PageHeader`, `PlaceholderSection`, `MainContainer`)
+- Page section components that render static content (heroes, final CTA bands)
 
 **Client Components:**
 
