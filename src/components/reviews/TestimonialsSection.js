@@ -3,11 +3,13 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { testimonials, reviewsAttribution } from "@/content/reviews";
+import { hasSyncedGoogleReviews } from "@/content/reviewsData";
 import ReviewsEmptyState from "@/components/reviews/ReviewsEmptyState";
 import TestimonialCard from "@/components/reviews/TestimonialCard";
 
 export default function TestimonialsSection() {
   const hasTestimonials = testimonials.length > 0;
+  const showGoogleAttribution = hasSyncedGoogleReviews();
 
   return (
     <Box
@@ -34,13 +36,15 @@ export default function TestimonialsSection() {
                 </Grid>
               ))}
             </Grid>
-            <Typography
-              variant="caption"
-              color="text.secondary"
-              sx={{ display: "block", mt: 3 }}
-            >
-              {reviewsAttribution}
-            </Typography>
+            {showGoogleAttribution ? (
+              <Typography
+                variant="caption"
+                color="text.secondary"
+                sx={{ display: "block", mt: 3 }}
+              >
+                {reviewsAttribution}
+              </Typography>
+            ) : null}
           </>
         ) : (
           <ReviewsEmptyState />

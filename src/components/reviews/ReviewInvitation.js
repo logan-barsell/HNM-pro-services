@@ -1,4 +1,3 @@
-import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
@@ -6,9 +5,11 @@ import Typography from "@mui/material/Typography";
 import { reviewSubmission } from "@/content/reviews";
 import { hasValidExternalUrl } from "@/utils/urls";
 import { brandRadii } from "@/theme/brandTokens";
+import { siteHeaderHeights } from "@/theme/layout";
 
 /**
  * Past-client invitation to leave a Google review.
+ * Deep link: /reviews/#leave-a-review (routes.leaveReview).
  * CTA activates when leaveReviewUrl (config or synced writeAReviewUri) is set.
  */
 export default function ReviewInvitation() {
@@ -21,8 +22,17 @@ export default function ReviewInvitation() {
   return (
     <Box
       component="section"
+      id="leave-a-review"
       aria-labelledby="review-invitation-heading"
-      sx={{ py: { xs: 7, md: 9 }, bgcolor: "background.default" }}
+      sx={{
+        pt: { xs: 2, md: 3 },
+        pb: { xs: 7, md: 9 },
+        bgcolor: "background.default",
+        scrollMarginTop: {
+          xs: `${siteHeaderHeights.xs + 12}px`,
+          md: `${siteHeaderHeights.md + 12}px`,
+        },
+      }}
     >
       <Container maxWidth="md">
         <Box
@@ -62,7 +72,6 @@ export default function ReviewInvitation() {
               variant="contained"
               color="primary"
               size="large"
-              endIcon={<OpenInNewIcon />}
               sx={{ minHeight: 48 }}
             >
               {reviewSubmission.ctaLabel}

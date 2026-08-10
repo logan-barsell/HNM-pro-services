@@ -4,21 +4,24 @@ import {
   getGoogleBusinessProfileUrl,
   getGoogleLeaveReviewUrl,
   getReviewsPageTestimonials,
+  hasSyncedGoogleReviews,
 } from "@/content/reviewsData";
 import { hasValidExternalUrl } from "@/utils/urls";
 
 /**
  * Reviews page content.
- * Voice: first person (Holly). Google reviews sync via npm run sync:reviews.
+ * Voice: first person (Holly). Google reviews sync via npm run sync:reviews
+ * when Place ID is available; until then on-site placeholders may display
+ * (never labeled as Google reviews).
  */
 
-export { hasValidExternalUrl };
+export { hasValidExternalUrl, hasSyncedGoogleReviews };
 
 export const reviewsHero = {
   eyebrow: "Client Reviews",
   heading: "Trust is built one visit at a time.",
   supporting:
-    "I care about doing right by the people, pets, and homes I’m invited into. As Google reviews come in, they’re shared here so you can get a clearer sense of what working together is like.",
+    "I care about doing right by the people, pets, and homes I’m invited into. Here’s a look at the kind of care families can expect when we work together.",
   primaryCta: {
     label: "Request a Free Consultation",
     href: routes.consultation,
@@ -29,7 +32,7 @@ export const reviewsHero = {
   },
 };
 
-/** Synced Google reviews (rating ≥ 4), capped for the Reviews page. */
+/** Synced Google reviews when available; otherwise on-site placeholders. */
 export const testimonials = getReviewsPageTestimonials();
 
 export const clientsValue = {
@@ -73,12 +76,13 @@ export const clientsValue = {
 export const reviewPlatforms = {
   title: "Find HNM on Google",
   supporting:
-    "Read public reviews on Google, or leave one if we’ve worked together.",
+    "Visit the HNM Professional Services profile on Google, or leave a review if we’ve worked together.",
   pendingNote:
-    "Google profile links will appear here once the Business Profile Place ID and URLs are configured.",
+    "Google profile links will appear here once the Business Profile URLs are configured.",
   google: {
-    label: "Read reviews on Google",
-    unavailableLabel: "Google reviews coming soon",
+    label: "View HNM on Google",
+    clickNote: "Click to view my Google Business Profile",
+    unavailableLabel: "Google profile coming soon",
     get url() {
       return getGoogleBusinessProfileUrl();
     },
@@ -91,6 +95,8 @@ export const reviewSubmission = {
   pendingBody:
     "Once the Google leave-a-review link is configured, past clients will be able to share feedback directly from this page.",
   ctaLabel: "Leave a Google Review",
+  /** Site path Holly can share with clients (scrolls to this section). */
+  sharePath: routes.leaveReview,
   get leaveReviewUrl() {
     return getGoogleLeaveReviewUrl();
   },
@@ -111,5 +117,6 @@ export const reviewsFinalCta = {
 
 export const reviewsSeoDescription = pageSeo[routes.reviews].description;
 
+/** Shown only when displayed testimonials come from Google Places sync. */
 export const reviewsAttribution =
   "Reviews are sourced from Google and updated automatically. Google and the Google logo are trademarks of Google LLC.";

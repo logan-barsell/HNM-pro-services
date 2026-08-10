@@ -1,3 +1,4 @@
+import StarRoundedIcon from "@mui/icons-material/StarRounded";
 import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
@@ -5,7 +6,8 @@ import { brandRadii } from "@/theme/brandTokens";
 import { hasValidExternalUrl } from "@/utils/urls";
 
 /**
- * Renders a single Google review / testimonial in site UI.
+ * Renders a single review / testimonial in site UI.
+ * "View on Google" only appears when sourceUrl is present (synced Google reviews).
  */
 export default function TestimonialCard({
   quote,
@@ -39,21 +41,6 @@ export default function TestimonialCard({
       }}
     >
       <Typography
-        aria-hidden
-        component="span"
-        sx={{
-          fontFamily: "var(--font-display), Georgia, serif",
-          fontSize: "2rem",
-          lineHeight: 1,
-          color: "primary.dark",
-          mb: 1.5,
-          opacity: 0.7,
-        }}
-      >
-        “
-      </Typography>
-
-      <Typography
         variant="body1"
         sx={{
           mb: 2.5,
@@ -63,16 +50,57 @@ export default function TestimonialCard({
           color: "text.primary",
         }}
       >
+        <Box
+          component="span"
+          aria-hidden
+          sx={{
+            fontFamily: "var(--font-display), Georgia, serif",
+            fontSize: "1.75rem",
+            lineHeight: 0,
+            color: "primary.dark",
+            opacity: 0.7,
+            mr: 0.25,
+          }}
+        >
+          “
+        </Box>
         {quote}
+        <Box
+          component="span"
+          aria-hidden
+          sx={{
+            fontFamily: "var(--font-display), Georgia, serif",
+            fontSize: "1.75rem",
+            lineHeight: 0,
+            color: "primary.dark",
+            opacity: 0.7,
+            ml: 0.25,
+          }}
+        >
+          ”
+        </Box>
       </Typography>
 
       {typeof rating === "number" ? (
-        <Typography
-          variant="body2"
-          sx={{ mb: 1, color: "primary.dark", fontWeight: 600 }}
+        <Box
+          sx={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 0.5,
+            mb: 1,
+            color: "primary.dark",
+          }}
+          aria-label={`Rated ${rating} out of 5`}
         >
-          Rated {rating} out of 5
-        </Typography>
+          <Typography
+            variant="body2"
+            component="span"
+            sx={{ fontWeight: 600, color: "inherit", lineHeight: 1 }}
+          >
+            {rating}
+          </Typography>
+          <StarRoundedIcon sx={{ fontSize: 18 }} aria-hidden />
+        </Box>
       ) : null}
 
       <Box component="footer">

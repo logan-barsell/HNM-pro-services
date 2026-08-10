@@ -98,9 +98,9 @@ export const homeAboutPreview = {
 
 export const homeReviewsPreview = {
   title: "What Clients Are Saying",
-  supporting: "Recent Google reviews from families I’ve worked with.",
+  supporting: "A few words from families I’ve worked with.",
   emptyNote:
-    "Google reviews will appear here once the Business Profile sync is connected.",
+    "Client feedback will appear here as reviews become available.",
   cta: { label: "View All Reviews", href: routes.reviews },
 };
 

@@ -3,7 +3,7 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { homeReviewsPreview } from "@/content/home";
-import { getHomeReviews } from "@/content/reviewsData";
+import { getHomeReviews, hasSyncedGoogleReviews } from "@/content/reviewsData";
 import { reviewsAttribution } from "@/content/reviews";
 import TestimonialCard from "@/components/reviews/TestimonialCard";
 import PrimaryCTA from "@/components/shared/PrimaryCTA";
@@ -11,6 +11,7 @@ import PrimaryCTA from "@/components/shared/PrimaryCTA";
 export default function ReviewsPreview() {
   const reviews = getHomeReviews();
   const hasReviews = reviews.length > 0;
+  const showGoogleAttribution = hasSyncedGoogleReviews();
 
   return (
     <Box
@@ -60,7 +61,7 @@ export default function ReviewsPreview() {
           </Grid>
         ) : null}
 
-        {hasReviews ? (
+        {hasReviews && showGoogleAttribution ? (
           <Typography
             variant="caption"
             sx={{
