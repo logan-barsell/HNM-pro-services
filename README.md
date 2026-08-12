@@ -124,4 +124,4 @@ Do not invent client facts. Use clearly marked placeholders for missing informat
 
 ## License
 
-All rights reserved unless otherwise specified.
+All rights reserved unless otherwise specified...
