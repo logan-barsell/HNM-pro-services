@@ -62,6 +62,7 @@ deploy/
 deployment/
 release-artifacts/
 
-# Full-resolution media masters (optimized copies live in public/brand/)
+# Full-resolution media masters (optimized copies live alongside in public/)
 public/brand/_originals/
+public/gallery/_originals/
 
